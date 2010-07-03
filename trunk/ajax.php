@@ -21,9 +21,26 @@ $action = isset($_POST['action']) ? trim(strtolower($_POST['action'])) : $action
  * */
 switch($action)
 {
-
-
+	case "saveuser":
+		global $xoopsUser;
+		$document = isset($_POST['document']) ? intval($_POST['document']) : 0;
+		$document_value = isset($_POST['document_value']) ? trim($_POST['document_value']) : '';
+		$name = isset($_POST['name']) ? trim($_POST['name']) : '';
+		$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+		$telephone = isset($_POST['telephone']) ? trim($_POST['telephone']) : '';
+        $member_handler =& xoops_gethandler('member');
+        $edituser =& $member_handler->getUser($xoopsUser->uid());
+		$edituser->setVar('name',$name);
+		$edituser->setVar('document',$document);
+		$edituser->setVar('document_value',$document_value);
+		$edituser->setVar('phone',$phone);
+		$edituser->setVar('telephone',$telephone);        
+		if (!$member_handler->insertUser($edituser)) {
+            echo _US_PROFUPDATED;
+        }
+		break;
 	default:
 		redirect_header(XOOPS_URL,2,'非法闯入.');	
 	break;
 }
+exit();
