@@ -19,7 +19,7 @@ class MartinHotelcity extends XoopsObject
 		$this->initVar("city_id", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("city_parentid", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("city_name", XOBJ_DTYPE_TXTBOX, null, true, 45);
-		$this->initVar("city_alias", XOBJ_DTYPE_TXTBOX, null, true, 255);
+		$this->initVar("city_alias", XOBJ_DTYPE_TXTBOX, null, false, 255);
 		$this->initVar("city_level", XOBJ_DTYPE_TXTBOX, null, true, 45);
 	}
 
