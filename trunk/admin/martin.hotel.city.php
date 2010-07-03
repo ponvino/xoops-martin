@@ -45,9 +45,13 @@ switch($action)
 		break;
 	
 	case "save":
+		$city_alias = isset($_POST['city_name']) ? addslashes($_POST['city_name']) : '';
+		$city_parentid = (isset($_POST['city_parentid']) ? intval($_POST['city_parentid']) : 0;
+		$city_alias = $city_parentid ? '' : $city_alias;
 		$HotelCityObj->setVar('city_id',$id);
-		$HotelCityObj->setVar('city_parentid', (isset($_POST['city_parentid'])) ? intval($_POST['city_parentid']) : 0);
-		$HotelCityObj->setVar('city_name', (isset($_POST['city_name'])) ? addslashes($_POST['city_name']) : 0);
+		$HotelCityObj->setVar('city_parentid', $city_parentid);
+		$HotelCityObj->setVar('city_name', (isset($_POST['city_name'])) ? addslashes($_POST['city_name']) : '');
+		$HotelCityObj->setVar('city_alias', $city_alias);
 		$HotelCityObj->setVar('city_level',  0);
 
 		if(!$id) $HotelCityObj->setNew();
