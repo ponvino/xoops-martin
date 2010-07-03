@@ -17,3 +17,4 @@ ALTER TABLE `7mogjl_martin_room` ADD `room_count` INT( 11 ) NOT NULL DEFAULT '0'
 
 ALTER TABLE `7mogjl_martin_hotel_service_relation` CHANGE `service_extra_price` `service_extra_price` DECIMAL( 11, 2 ) NULL DEFAULT '0';
 
+ALTER TABLE `7mogjl_martin_hotel_city` ADD `city_alias` VARCHAR( 255 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' AFTER `city_name`; 
