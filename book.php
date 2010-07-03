@@ -35,6 +35,10 @@ $this_url = str_replace('&check_in_date='.date('Y-m-d',$check_in_date),'',$this_
 $this_url = str_replace('&check_out_date='.$check_out_date,'',$this_url);
 $this_url = str_replace('&check_out_date='.date('Y-m-d',$check_out_date),'',$this_url);
 
+$xoopsUser->cleanVars();
+$user = &$xoopsUser->cleanVars;
+//var_dump($user);
+
 //得到酒店相关信息
 $hotel_service = $service_handler->getHotelService($hotel_id);
 //var_dump($hotel_service);
@@ -60,6 +64,7 @@ $xoopsTpl -> assign('hotel_service',$hotel_service);
 $xoopsTpl -> assign('room_price',$room_price);
 $xoopsTpl -> assign('rooms',$rooms);
 $xoopsTpl -> assign('check_arr',$check_arr);
+$xoopsTpl -> assign('user',$user);
 
 
 include XOOPS_ROOT_PATH.'/footer.php';
