@@ -24,6 +24,6 @@ switch($action)
 
 
 	default:
-		redi	
+		redirect_header(XOOPS_URL,2,'非法闯入.');	
 	break;
 }
