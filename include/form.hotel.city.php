@@ -42,6 +42,7 @@ class form_hotel_city extends XoopsThemeForm
 		ob_end_clean();
 		// City Name
 		$this->addElement( new XoopsFormText('名称', 'city_name', 50, 255, $this->Obj->city_name()), true);
+		$this->addElement( new XoopsFormText('网址', 'city_alias', 50, 255, $this->Obj->city_alias()), true);
 		$this->addElement( new XoopsFormHidden( 'id', $this->Obj->city_id() ) );
 
 	}
