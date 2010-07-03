@@ -1,0 +1,139 @@
+<style type="text/css">@import "<{$module_url}>javascript/jquery/jquery-datepick/jquery.datepick.css";</style> 
+<script type="text/javascript" src="<{$module_url}>javascript/jquery/jquery-datepick/jquery.datepick.js"></script>
+<script type="text/javascript" src="<{$module_url}>javascript/jquery/jquery-datepick/jquery.datepick-zh-CN.js"></script>
+<script type="text/javascript" src="<{$module_url}>javascript/hotel.js"></script>
+<link rel="stylesheet" href="<{$module_url}>css/hotelsearch.css" type="text/css" />
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function($){
+	$('.checkdate').datepick({minDate:0,maxDate:30,showOnFocus: false,dateFormat: 'yy-mm-dd'});
+	$('.checkdate').change(function(){
+		if(this.id == 'checkdate1' && $('#checkdate2').val() == '')
+			$('#checkdate2').focus();
+		else
+			$("#datepick-div").hide();
+	});
+	$('.rela').hover(function(){$(this).find(".abso").show();},function(){$(this).find(".abso").hide();});
+});
+function showHotel(ele,class){
+	if(jQuery("." + class).hasClass('show')){
+		jQuery(ele).text("全部房型 ▼");jQuery("." + class).hide();jQuery("." + class).removeClass('show');
+	}else{
+		jQuery(ele).text("全部房型 ▲");jQuery("." + class).show();jQuery("." + class).addClass('show');
+	}
+}
+function showPrice(ele)
+{
+	if(jQuery(ele).next('div').hasClass('show')){
+		jQuery(ele).next('div').hide();jQuery(ele).next('div').removeClass('show');
+	}else{
+		jQuery(ele).next('div').show();jQuery(ele).next('div').addClass('show');
+	}
+}
+function GetRoom(ele)
+{
+	var ele = "#" + ele;
+	if(jQuery(ele).hasClass('show')){
+		jQuery(ele).hide();jQuery(ele).removeClass('show');
+	}else{
+		jQuery(ele).show();jQuery(ele).addClass('show');
+	}
+}
+</script>
+
+<div class="breadcrums"><span>您所在的位置：</span>首页</div>
+<!--结束面包线-->
+<div class="blocknh">
+<!--新闻-->
+<div class="leftblock">
+   <div class="l_title">选择（<{$select_title}>）酒店</div>
+   <div class="hotellist">
+     <div class="hoteltitle">
+		 <div class="left">酒店列表</div>
+		 <div class="right">
+		<{if $next_url}><a href="<{$next_url}>"><img src="<{$module_url}>images/next.gif" border="0"/></a><{/if}>
+		<{if $prev_url}><a href="<{$prev_url}>"><img src="<{$module_url}>images/nav.gif" border="0"/></a><{/if}>
+		<{if $check_date.0}><span>入住日期：</span><{$check_date.0}><span>离店日期：</span><{$check_date.1}> &nbsp;共<{$check_in_date_count}>晚<{/if}></div>
+	 </div>
+	 <div class="listtitle">
+	 <ul>
+		<li class="titleleft">排序方式:</li>
+		<li><span class="info">港捷旅推荐</a></span>
+		<li><a href="<{$this_url}>&amp;Order=room_price&amp;By=<{$this_by}>">价格</a></li>
+		<li><a href="<{$this_url}>&amp;Order=hotel_star&amp;By=<{$this_by}>">酒店星级</a></li>
+		<li><a href="<{$this_url}>&amp;Order=room_is_totay_special&amp;By=<{$this_by}>">今日特价</a></li>
+		<li>共<{$count}>家酒店</li>
+	 </ul>
+	 </div>
+<{foreach item=hotel name=hotel from=$hotels}>
+	<div class="listclass">
+		<div class="listtop"><div class="topleft"><img src="<{$module_url}>img.php?id=<{$hotel.hotel_icon}>&w=70&h=70" title="<{$hotel.hotel_name}>"/></div>
+			<div class="topright">
+				<p class="title"><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}>"><{$hotel.hotel_name}></a></p>
+				<p><{$hotel.hotel_description}></p>
+				<p>所在行政区：<{$hotel.city_name}></p>
+			</div>
+		</div>
+		<div class="righttitle">
+			<table width="100%" border="0" cellspacing="0" cellpadding="5">
+			<tr align="center" class="bld">
+				<td width="20%">房型</td>
+				<td width="11%">床型</td>
+				<td width="13%">直接预订价</td>
+				<td width="12%"><p>直接预订<br />	送现金券</p></td>
+				<td width="12%">直接预订</td>
+				<td width="17%">查询价格参考</td>
+				<td width="15%">查询预订</td>
+			</tr>
+		<{foreach item=room name=room from=$rooms[$hotel.hotel_id]}>
+			<tr align="center" <{if $smarty.foreach.room.index > 2}>class="hotel<{$hotel.hotel_id}>" style="display:none;"<{/if}>>
+				<td width="20%"><a href="javascript:void(0);" onclick="GetRoom('r<{$room.room_id}>');"><{$room.room_type_info}></a></td>
+				<td width="11%"><{$bedtype[$room.room_bed_type]}></td>
+				<td width="13%"><div class="rela"><a onclick="showPrice(this);" style="cursor:pointer;text-decoration:none;">￥ <{$room.room_price}></a><div class="abso" style="display:none;">
+				<table width="300" border="0" cellspacing="0" cellpadding="0">
+				<tr><{foreach from=$room.room_prices item=price}><td><{$price.date}></td><{/foreach}></tr>
+				<tr><{foreach from=$room.room_prices item=price}><td><{$price.price}></td><{/foreach}></tr>
+				</table>
+				</div></div>
+				</td>
+				<td width="12%">￥ <{$room.room_sented_coupon}></td>
+				<td width="12%"><img src="<{$module_url}>images/btn_01.gif" title="直接预订" border="0" style="cursor:pointer;" onClick="book(this,<{$hotel.hotel_id}>,<{$room.room_id}>,false);" class="book"></td>
+				<td width="17%">￥ <{$room.room_advisory_range_small}>-<{$room.room_advisory_range_max}></td>
+				<td width="15%"><img src="<{$module_url}>images/btn_02.gif" title="寻找最低价" border="0" style="cursor:pointer;" onClick="book(this,<{$hotel.hotel_id}>,<{$room.room_id}>,true);" class="book"></td>
+			</tr>
+			<tr align="center" id="r<{$room.room_id}>" style="display:none;"><td colspan="7" bordercolor="#5EA9FF" bgcolor="#FFFFFF"><div class="caplist">
+				<ul>
+					<li>面积：<{$room.room_area}>㎡</li>
+					<li>楼层：<{$room.room_floor}></li>
+					<li>房型：<{$room.room_type_info}></li>
+					<li>介绍：<{$room.room_bed_info}></li>
+				</ul>
+			<div style="text-align:left; background:#E6EFFF"><a onclick="GetRoom('r<{$room.room_id}>');" style="cursor:pointer;text-decoration:none;">隐藏</a></div>
+			</div></td></tr>
+			<{if $smarty.foreach.room.index > 2 && $smarty.foreach.room.last}><tr align="right"><th colspan="7"><a onclick="showHotel(this,'hotel<{$hotel.hotel_id}>');" style="cursor:pointer;text-decoration:none;">全部房型 ▼</a></th></tr><{/if}>
+		<{/foreach}>
+			</table>
+		</div>
+	</div>
+<{/foreach}>
+   </div>
+
+   <div class="hoteltitle"></div>
+   <div style="background:#F0F7EB; padding:15px;">
+     <b>港捷旅为您提供专业的香港、澳门酒店预订服务，我们提供多种预订方式：</b><br />
+1、拍卖、团购；让您以绝对市场最低价购得心仪酒店客房：<br />
+2、人肉搜索；如果您对香港不熟悉，可向我们的客服人员咨询，说出您的需求，让我们专业的咨询师帮您<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 选择最适合您的房源；<br />
+3、直接预订：如果您对香港很熟悉，或者对所选择酒店熟悉，又想节省订房时间，可采用直接预订模式，<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付完款后，收到我们的确认就可入住；<br />
+4、查询预订:当您选择到心仪房源时，可向我们的专业客服咨询该客房的实时客房行情，以实时价格预订<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客房。
+   </div>
+</div>
+<input type="hidden" id="check_in_date" value="<{$check_in_date}>"><input type="hidden" id="check_out_date" value="<{$check_out_date}>">
+<!--新闻-->
+<!--首页酒店信息-->
+<div class="hotel"><{$martin_hotel_search_left}></div>
+
+</div>
+<!--结束主体--!>
