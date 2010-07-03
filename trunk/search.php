@@ -1,5 +1,5 @@
 <?php
-include '../../mainfile.php';
+if(file_exists('../../mainfile.php')) include_once '../../mainfile.php';
 include XOOPS_ROOT_PATH.'/modules/martin/include/common.php';
 
 $search_handler =& xoops_getmodulehandler("search", 'martin');
@@ -7,7 +7,8 @@ $hotel_handler =& xoops_getmodulehandler("hotel", 'martin');
 
 //var_dump($_GET);
 //paramerters
-$city_id = isset($_GET['City']) ? intval($_GET['City']) : 0;
+$city_id = isset($city_id) ? $city_id : 0;
+$city_id = isset($_GET['City']) ? intval($_GET['City']) : $city_id;
 //时间处理
 $check_date = isset($_GET['CheckDate']) ? array(strtotime($_GET['CheckDate'][0]),strtotime($_GET['CheckDate'][1])) : null;
 //$check_date[0] = $check_date[0] < time() ? time() : $check_date[0];
@@ -17,7 +18,7 @@ $check_date = isset($_GET['CheckDate']) ? array(strtotime($_GET['CheckDate'][0])
 $price = isset($_GET['price']) ? ($_GET['price']) : null;
 $hotel_address = isset($_GET['HotelAddress']) ? trim($_GET['HotelAddress']) : null;
 $hotel_name = isset($_GET['HotelName']) ? trim($_GET['HotelName']) : null;
-$hotel_star = isset($_GET['HotelStar']) ? intval($_GET['HotelStar']) : $GET['HotelStar'];
+$hotel_star = isset($_GET['HotelStar']) ? intval($_GET['HotelStar']) : isset($GET['HotelStar']) ? $GET['HotelStar']: 0;
 $p = isset($_GET['p']) ? intval($_GET['p']) : 0;
 $order = isset($_GET['Order']) ? trim($_GET['Order']) : null;
 $by = isset($_GET['By']) ? strtoupper(trim($_GET['By'])) : null;
@@ -36,7 +37,7 @@ $rooms = $search_handler->GethotelRooms($check_date);
 //var_dump($HotelData);
 
 $hotelrank = getModuleArray('hotelrank','hotelrank',true);
-$select_title = $city_id > 0 ? $search_handler->GetCityName($city_id) : $hotelrank[$hotel_star] ;
+$select_title = $city_id > 0 ? $search_handler->GetCityName($city_id) : @$hotelrank[$hotel_star];
 $select_title = empty($select_title) ? '所有': $select_title;
 
 $this_url = XOOPS_URL . '/modules/martin/search.php?' .$_SERVER['QUERY_STRING'];
@@ -63,9 +64,9 @@ $xoopsOption['xoops_pagetitle'] =  $select_title . ' - 酒店搜索预定 - '.$x
 $xoopsTpl -> assign('check_in_date_count',intval(($check_date[1]-$check_date[0])/(3600*24)));
 $xoopsTpl -> assign("xoops_pagetitle", $xoopsOption["xoops_pagetitle"]);
 $xoopsTpl -> assign('hotel_static_prefix',$xoopsModuleConfig['hotel_static_prefix']);
-$xoopsTpl -> assign('check_date',$_GET['CheckDate']);
-$xoopsTpl -> assign('check_in_date',strtotime($_GET['CheckDate'][0]));
-$xoopsTpl -> assign('check_out_date',strtotime($_GET['CheckDate'][1]));
+$xoopsTpl -> assign('check_date',isset($_GET['CheckDate']) ? $_GET['CheckDate']: '');
+$xoopsTpl -> assign('check_in_date',strtotime(isset($_GET['CheckDate']) ? $_GET['CheckDate'][0] : ''));
+$xoopsTpl -> assign('check_out_date',strtotime(isset($_GET['CheckDate']) ? $_GET['CheckDate'][1] : ''));
 $xoopsTpl -> assign('module_url',XOOPS_URL . '/modules/martin/');
 $xoopsTpl -> assign('hotelrank',$hotelrank);
 $xoopsTpl -> assign('bedtype',getModuleArray('room_bed_type','room_bed_type',true));
