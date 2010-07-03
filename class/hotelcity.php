@@ -19,6 +19,7 @@ class MartinHotelcity extends XoopsObject
 		$this->initVar("city_id", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("city_parentid", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("city_name", XOBJ_DTYPE_TXTBOX, null, true, 45);
+		$this->initVar("city_alias", XOBJ_DTYPE_TXTBOX, null, true, 255);
 		$this->initVar("city_level", XOBJ_DTYPE_TXTBOX, null, true, 45);
 	}
 
@@ -35,6 +36,11 @@ class MartinHotelcity extends XoopsObject
 	function city_name($format = 'S')
 	{
 		return $this->getVar("city_name",$format);
+	}
+
+	function city_alias($format = 'S')
+	{
+		return $this->getVar("city_alias",$format);
 	}
 
 	function city_level($format = 'S')
@@ -140,26 +146,32 @@ class MartinHotelCityHandler extends XoopsObjectHandler
 								city_id,
 								city_parentid,
 								city_name,
+								city_alias,
 								city_level
 							) VALUES (
 								NULL,
 								%u,
+								%s,
 								%s,
 								%s
 							)",
 								$this->db->prefix('martin_hotel_city'),
 								$city_parentid,
 								$this->db->quoteString($city_name),
+								$this->db->quoteString($city_alias),
 								$this->db->quoteString($city_level)
 								);
 		} else {
 			$sql = sprintf("UPDATE %s SET
 								city_parentid = %u,
 								city_name = %s,
+								city_alias = %s,
 								city_level = %s
 							WHERE city_id = %u",
 							$this->db->prefix('martin_hotel_city'),
-							$city_parentid, $this->db->quoteString($city_name),
+							$city_parentid, 
+							$this->db->quoteString($city_name),
+							$this->db->quoteString($city_alias),
 							$this->db->quoteString($city_level),
 							$city_id);
 		}
