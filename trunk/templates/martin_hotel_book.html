@@ -78,6 +78,15 @@ jQuery(document).ready(function($){
 		var url = this_url + '&check_in_date=' + check_in_date + '&check_out_date=' + check_out_date;
 		window.location.href = url;
 	});
+	$("#sub_user").click(function(){
+		var post = '';
+		$("#user input[type=text]").not($(this)).each(function(){
+			post += this.id + '=' + $(this).val() + '&';
+		});
+		$.post('ajax.php?action=saveuser',post,function(data){
+			alert(data);
+		});
+	});
 });
 </script>
 <div class="breadcrums"><span>您所在的位置：</span>首页</div>
@@ -171,43 +180,34 @@ jQuery(document).ready(function($){
 	 <div class="listclass"><{$hotel.hotel_reminded}></div>
    </div>
    <div class="hotellist">
-     <div class="hoteltitle bookingtitle">
-		 <div class="lefttitle">办理入住人信息（有些酒店不允许更改入住人信息，请谨慎填写）</div>
-	    </div>
-	 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dtable">
-         <tr>
-           <td width="18%" align="right"><font color="#FF0000">*</font>姓名：</td>
-           <td width="32%"><input name="textfield32" type="text" size="18" /></td>
-           <td width="18%" align="right"><font color="#FF0000">*</font>证件类型：</td>
-           <td width="32%"><select name="order_document_type" id="order_document_type"><{foreach from=$order_document_type item=document key=key}><option value="<{$key}>"><{$document}></option><{/foreach}></select></td>
-         </tr>
-         <tr>
-           <td align="right">固定电话：</td>
-           <td><input name="textfield33" type="text" size="18" /></td>
-           <td align="right"><font color="#FF0000">*</font>证件号码：</td>
-           <td><input name="textfield35" type="text" size="24" /></td>
-         </tr>
-		 <tr>
-           <td align="right"><font color="#FF0000">*</font>手机：</td>
-           <td><input name="textfield36" type="text" size="18" /></td>
-           <td colspan="2">如果您是预订港澳酒店：<br />
-             大陆客户请留下港澳通行证或护照号码；<br />
-            港澳或海外客户请留下身份证号；部份酒店可能会对港澳（海外）客户另行加价，请再向客服咨询最新报价。</td>
-          </tr>
-		 <tr>
-           <td align="right">其他入住人姓名：             </td>
-           <td><input name="textfield322" type="text" size="18" />           </td>
-           <td colspan="2">（注： 除办理入住手续的客人外，其他每间客房需留下一名入住人姓名； ）</td>
-          </tr>
-		<tr>
-           <td colspan="4" align="center" class="tdnone">
-             <input type="button" value="将入住人详情保存为会员信息" style="margin-left:10px;" class="button"/>
-         </td>
-          </tr>
-		 <tr>
-           <td colspan="4" align="center" class="tdnone">&nbsp;</td>
-          </tr>
-       </table>
+     <div class="hoteltitle bookingtitle"><div class="lefttitle">办理入住人信息（有些酒店不允许更改入住人信息，请谨慎填写）</div></div>
+	<table width="100%" border="0" cellspacing="0"  id="user" cellpadding="0" class="dtable">
+	<tr>
+		<td width="18%" align="right"><font color="#FF0000">*</font>姓名：</td>
+		<td width="32%"><input name="name" id="name" type="text" size="18" value="<{$user.name}>"/></td>
+		<td width="18%" align="right"><font color="#FF0000">*</font>证件类型：</td>
+		<td width="32%"><select name="document" id="document"><{foreach from=$order_document_type item=document key=key}><option value="<{$key}>" <{if $key eq $user.document}>selected="selected"<{/if}>><{$document}></option><{/foreach}></select></td>
+	</tr><tr>
+		<td align="right">固定电话：</td>
+		<td><input name="telephone" id="telephone" type="text" size="18" maxlength="30" value="<{$user.telephone}>"/></td>
+		<td align="right"><font color="#FF0000">*</font>证件号码：</td>
+		<td><input name="document_value" id="document_value" type="text" size="18" maxlength="255" value="<{$user.document_value}>"/></td>
+	</tr><tr>
+		<td align="right"><font color="#FF0000">*</font>手机：</td>
+		<td><input name="phone" id="phone" type="text" size="18" maxlength="25" value="<{$user.phone}>"/></td>
+		<td colspan="2">如果您是预订港澳酒店：<br />
+		大陆客户请留下港澳通行证或护照号码；<br />
+		港澳或海外客户请留下身份证号；部份酒店可能会对港澳（海外）客户另行加价，请再向客服咨询最新报价。</td>
+	</tr><tr>
+		<td align="right">其他入住人姓名：</td>
+		<td><input name="extra_person" id="extra_person" type="text" size="18"/></td>
+		<td colspan="2">（注： 除办理入住手续的客人外，其他每间客房需留下一名入住人姓名； ）</td>
+	</tr><tr>
+		<td colspan="4" align="center" class="tdnone">
+		<input type="button" value="将入住人详情保存为会员信息" style="margin-left:10px;" class="button" id="sub_user"/>
+		</td>
+	</tr><tr><td colspan="4" align="center" class="tdnone">&nbsp;</td></tr>
+	</table>
    </div>
    <div style="margin:20px; font-weight:normal; text-align:center"><input type="submit" value="预定" style="margin-left:10px;" class="button"/><input type="button" value="取消订单" style="margin-left:10px;" class="button" onclick="window.history.go(-1);"/></div>
 </form>
