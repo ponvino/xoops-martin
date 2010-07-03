@@ -37,7 +37,9 @@ switch($action)
 		$edituser->setVar('telephone',$telephone);        
 		if (!$member_handler->insertUser($edituser)) {
             echo _US_PROFUPDATED;
-        }
+        }else{
+			echo "保存成功";	
+		}
 		break;
 	default:
 		redirect_header(XOOPS_URL,2,'非法闯入.');	
