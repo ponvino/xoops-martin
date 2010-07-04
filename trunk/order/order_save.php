@@ -67,13 +67,13 @@ $cartObj->setVar('service_date_count',$service);
 
 if($order_id = $cart_handler->saveCart($cartObj))
 {
-	if(!$cart_handler->InsertOrderRoom($order_id,array($room_id), $dateNumber ))
+	if(is_array($dateNumber) && !empty($dateNumber))
 	{
-		redirect_header('javascript:history.go(-1);' , 2 ,'房间写入失败,订单保存失败.');
-	}	
-	if(!$cart_handler->InsertOrderService($order_id,$service))
+		if(!$cart_handler->InsertOrderRoom($order_id,array($room_id), $dateNumber )) redirect_header('javascript:history.go(-1);' , 2 ,'房间写入失败,订单保存失败.');
+	}
+	if(is_array($service) && !empty($dateNumber))
 	{
-		redirect_header('javascript:history.go(-1);' , 2 ,'服务写入失败，订单保存失败.');
+		if(!$cart_handler->InsertOrderService($order_id,$service)) redirect_header('javascript:history.go(-1);' , 2 ,'服务写入失败，订单保存失败.');
 	}
 	redirect_header(MODULE_URL . 'pay.php?order_id='.$order_id,2,'订单提成功.');
 }else{
