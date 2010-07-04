@@ -47,23 +47,25 @@ if(file_exists($function_file))
 }
 
 //get id by static url
-if($_SERVER['PATH_INFO'])
+if(isset($_SERVER['PATH_INFO']))
 {
-	$GET = array();
-	$GETS = $id = str_replace($xoopsModuleConfig['hotel_static_prefix'],'',$_SERVER['PATH_INFO']);
-	$id = empty($id) ? 0 : array_reverse(explode('-',$id));
-	$id = isset($id[0]) ? intval($id[0]) : 0;
-	$GETS = empty($GETS) ? null : explode(DS,$GETS);
-	if(is_array($GETS))
+	if($_SERVER['PATH_INFO'])
 	{
-		foreach($GETS as $G)
+		$GET = array();
+		$GETS = $id = str_replace($xoopsModuleConfig['hotel_static_prefix'],'',$_SERVER['PATH_INFO']);
+		$id = empty($id) ? 0 : array_reverse(explode('-',$id));
+		$id = isset($id[0]) ? intval($id[0]) : 0;
+		$GETS = empty($GETS) ? null : explode(DS,$GETS);
+		if(is_array($GETS))
 		{
-			$G = !empty($G) ? explode('-',$G) : null;
-			$GET[$G[0]] = isset($G[1]) ? $G[1] : 0;
+			foreach($GETS as $G)
+			{
+				$G = !empty($G) ? explode('-',$G) : null;
+				$GET[$G[0]] = isset($G[1]) ? $G[1] : 0;
+			}
+			$GET = array_filter($GET);
 		}
-		$GET = array_filter($GET);
+		unset($GETS);
 	}
-	unset($GETS);
 }
-
 ?>
