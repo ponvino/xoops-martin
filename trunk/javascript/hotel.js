@@ -84,6 +84,6 @@ function book(even,hotel_id,room_id,isFind)
 	check_in_date = isNaN(check_in_date) ? 0 : check_in_date; 
 	var check_out_date = Number(jQuery("#check_out_date").val());
 	check_out_date = isNaN(check_out_date) ? 0 : check_out_date; 
-	var book_url = module_url + 'book.php?hotel_id=' + hotel_id + '&room_id=' + room_id + '&check_in_date=' + check_in_date + '&check_out_date=' + check_out_date + '&isFind=' + isFind;
+	var book_url = module_url + '/modules/martin/book.php?hotel_id=' + hotel_id + '&room_id=' + room_id + '&check_in_date=' + check_in_date + '&check_out_date=' + check_out_date + '&isFind=' + isFind;
 	window.location.href = book_url;
 }
