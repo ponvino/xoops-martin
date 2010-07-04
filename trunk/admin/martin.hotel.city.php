@@ -134,7 +134,7 @@ function display($HotelCityObj, $level = 0)
 		$spaces .= '&nbsp;&nbsp;&nbsp;';
 	}
 	echo "<tr>";
-	echo "<td class='even' align='lefet'>" . $spaces . "<a href='?action=add&id=" . $HotelCityObj->city_id() . "'><img src='" . XOOPS_URL . "/modules/smartsection/images/icon/subcat.gif' alt='' />&nbsp;" . $HotelCityObj->city_name() . "</a></td>";
+	echo "<td class='even' align='lefet'>" . $spaces . "<a href='". XOOPS_URL . '/hotel/' . $HotelCityObj->city_alias() . "'><img src='" . XOOPS_URL . "/modules/smartsection/images/icon/subcat.gif' alt='' />&nbsp;" . $HotelCityObj->city_name() . "</a></td>";
 	echo "<td class='even' align='center'> $modify $delete </td>";
 	echo "</tr>";
 	$subObj = $hotelcity_handler->getHotelCitys(0, 0, $HotelCityObj->city_id());
