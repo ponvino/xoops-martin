@@ -333,3 +333,13 @@ CREATE TABLE IF NOT EXISTS `7mogjl_martin_room_type` (
   `room_type_info` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`room_type_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='房型' AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `7mogjl_martin_order_service` (
+  `order_id` int(11) NOT NULL DEFAULT '0',
+  `service_id` int(11) NOT NULL DEFAULT '0',
+  `service_date` int(11) DEFAULT '0',
+  `service_count` int(11) DEFAULT '0',
+  KEY `service_id` (`service_id`),
+  KEY `order_id` (`order_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED COMMENT='订单服务';

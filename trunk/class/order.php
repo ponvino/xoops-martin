@@ -481,7 +481,7 @@ class MartinOrderHandler extends XoopsObjectHandler
 	{
 		if(!$order_id) return $order_id;
 		global $xoopsDB;
-		$sql = "SELECT mor.room_id , mor.room_count ,mor.room_date , r.* , 
+		$sql = "SELECT mor.room_id , mor.room_count ,mor.room_date , r.room_name , h.hotel_id , 
 			rp.room_is_totay_special,rp.room_price,rp.room_advisory_range_small,rp.room_advisory_range_max ,
 			h.hotel_name,hotel_city_id "; 
 		$sql .= "FROM " . $xoopsDB->prefix("martin_order_room") . " mor ";

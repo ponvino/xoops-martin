@@ -41,6 +41,10 @@ define("MARTIN_RECOMMEND_DESCRIPTION","推荐酒店，顺序按照您输入的�
 define("MARTIN_REGISTER_POINT","注册赠送现金卷，请按照规则输入");
 define("MARTIN_TODAY_SPECIAL","酒店今日特价，请按照规则输入");
 define("MARTIN_HOTEL_GUIDE","酒店导购，请按照规则输入");
+define("MARTIN_ONLINE_PAY","在线支付方式");
+define("MARTIN_ONLINE_PAY_DESCRIPTION","在线支付方式，请按照规则输入");
+define("MARTIN_LINE_PAY","线下支付方式");
+define("MARTIN_LINE_PAY_DESCRIPTION","推荐酒店，顺序按照您输入的，请按照规则输入");
 
 
 ?>

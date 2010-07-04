@@ -255,7 +255,9 @@ function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $s
 				//var_dump($TmpArr);
 				if(!empty($TmpArr[0]) && !empty($TmpArr[1]))
 				{
-					$ModuleArr[intval(str_replace("\n","",$TmpArr[0]))] = trim(str_replace("\n","",$TmpArr[1]));
+					$ModuleKey = (str_replace("\n","",$TmpArr[0]));
+					$ModuleKey = is_numeric($ModuleKey) ? intval($ModuleKey) : trim($ModuleKey);
+					$ModuleArr[$ModuleKey] = trim(str_replace("\n","",$TmpArr[1]));
 				}else{
 					$ModuleArr[] = trim(str_replace("\n","",$TmpArr[0]));
 				}
