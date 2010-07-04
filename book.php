@@ -65,6 +65,7 @@ $xoopsTpl -> assign('room_price',$room_price);
 $xoopsTpl -> assign('rooms',$rooms);
 $xoopsTpl -> assign('check_arr',$check_arr);
 $xoopsTpl -> assign('user',$user);
-
+$xoopsTpl -> assign('room_id',$room_id);
+$xoopsTpl -> assign('hotel_id',$hotel_id);
 
 include XOOPS_ROOT_PATH.'/footer.php';
