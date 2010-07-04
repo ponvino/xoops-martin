@@ -476,7 +476,7 @@ class MartinHotelServiceHandler extends XoopsObjectHandler
 	function getHotelService($hotel_id)
 	{
 		global $xoopsDB,$xoopsModule;
-		$DBPrefx = $xoopsDB->prefix . '_' . $xoopsModule->getVar('dirname');
+		$DBPrefx = empty($xoopsdModule) ? $xoopsDB->prefix . '_martin': $xoopsDB->prefix . '_' . $xoopsModule->getVar('dirname');
 		if(empty($hotel_id)) return false;
 		$sql = 'SELECT st.service_type_name,s.service_id,s.service_unit,s.service_name,
 			s.service_instruction,sr.service_extra_price FROM ';

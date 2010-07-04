@@ -144,7 +144,7 @@ jQuery(document).ready(function($){
 		<tr align="center">
 			<td width="33%"><{$d|date_format:"%Y年%m月%d日"}></td>
 			<td width="21%"><{$room_price.$d.room_price}></td>
-			<td width="23%"><select name="dateNmber[<{$d}>]" class="selectNum"><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option></select><input type="hidden" value="<{$room_price.$d.room_sented_coupon}>" class="send_coupon"></td>
+			<td width="23%"><select name="dateNumber[<{$d}>]" class="selectNum"><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option></select><input type="hidden" value="<{$room_price.$d.room_sented_coupon}>" class="send_coupon"></td>
 			<td width="23%"><{$room_price.$d.room_price}></td>
 		</tr>
 		<{/foreach}>
@@ -212,17 +212,17 @@ jQuery(document).ready(function($){
 	<table width="100%" border="0" cellspacing="0"  id="user" cellpadding="0" class="dtable">
 	<tr>
 		<td width="18%" align="right"><font color="#FF0000">*</font>姓名：</td>
-		<td width="32%"><input name="name" id="name" type="text" size="18" value="<{$user.name}>"/></td>
+		<td width="32%"><input name="user[name]" id="name" type="text" size="18" value="<{$user.name}>"/></td>
 		<td width="18%" align="right"><font color="#FF0000">*</font>证件类型：</td>
-		<td width="32%"><select name="document" id="document"><{foreach from=$order_document_type item=document key=key}><option value="<{$key}>" <{if $key eq $user.document}>selected="selected"<{/if}>><{$document}></option><{/foreach}></select></td>
+		<td width="32%"><select name="user[document]" id="document"><{foreach from=$order_document_type item=document key=key}><option value="<{$key}>" <{if $key eq $user.document}>selected="selected"<{/if}>><{$document}></option><{/foreach}></select></td>
 	</tr><tr>
 		<td align="right">固定电话：</td>
-		<td><input name="telephone" id="telephone" type="text" size="18" maxlength="30" value="<{$user.telephone}>"/></td>
+		<td><input name="user[telephone]" id="telephone" type="text" size="18" maxlength="30" value="<{$user.telephone}>"/></td>
 		<td align="right"><font color="#FF0000">*</font>证件号码：</td>
-		<td><input name="document_value" id="document_value" type="text" size="18" maxlength="255" value="<{$user.document_value}>"/></td>
+		<td><input name="user[document_value]" id="document_value" type="text" size="18" maxlength="255" value="<{$user.document_value}>"/></td>
 	</tr><tr>
 		<td align="right"><font color="#FF0000">*</font>手机：</td>
-		<td><input name="phone" id="phone" type="text" size="18" maxlength="25" value="<{$user.phone}>"/></td>
+		<td><input name="user[phone]" id="phone" type="text" size="18" maxlength="25" value="<{$user.phone}>"/></td>
 		<td colspan="2">如果您是预订港澳酒店：<br />
 		大陆客户请留下港澳通行证或护照号码；<br />
 		港澳或海外客户请留下身份证号；部份酒店可能会对港澳（海外）客户另行加价，请再向客服咨询最新报价。</td>
@@ -237,6 +237,7 @@ jQuery(document).ready(function($){
 	</tr><tr><td colspan="4" align="center" class="tdnone">&nbsp;</td></tr>
 	</table>
    </div>
+   <input type="hidden" name="hotel_id" value="<{$hotel_id}>"><input type="hidden" name="room_id" value="<{$room_id}>"><input type="hidden" name="check_in_date" value="<{$check_in_date}>"><input type="hidden" name="check_out_date" value="<{$check_out_date}>">
    <div style="margin:20px; font-weight:normal; text-align:center"><input type="button" value="预定" style="margin-left:10px;" class="button" id="sub_order"/><input type="button" value="取消订单" style="margin-left:10px;" class="button" onclick="window.history.go(-1);"/></div>
 </form>
    </div>

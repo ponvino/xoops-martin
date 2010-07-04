@@ -38,6 +38,10 @@ if (isset($xoopsModule)) {
 	$i++;
 	$headermenu[$i]['title'] = "更新模块";
 	$headermenu[$i]['link'] = XOOPS_URL . "/modules/system/admin.php?fct=modulesadmin&op=update&module=" . $xoopsModule->getVar('dirname');
+	
+	$i++;
+	$headermenu[$i]['title'] = "支付方式配置";
+	$headermenu[$i]['link'] = XOOPS_URL . "/modules/martin/admin/martin.pay.php";
 
 }
 
