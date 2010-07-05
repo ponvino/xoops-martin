@@ -17,6 +17,7 @@ class MartinCart extends XoopsObject
 		$this->initVar("order_mode", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_uid", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_pay_method", XOBJ_DTYPE_INT, null, false);
+		$this->initVar("order_pay", XOBJ_DTYPE_TXTBOX, null, true, 25);
 		$this->initVar("order_status", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_total_price", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_pay_money", XOBJ_DTYPE_INT, null, false);
@@ -87,6 +88,7 @@ class MartinCartHandler extends XoopsObjectHandler
 							order_uid,
 							order_status,
 							order_pay_method,
+							order_pay,
 							order_total_price,
 							order_pay_money,
 							order_coupon,
@@ -105,6 +107,7 @@ class MartinCartHandler extends XoopsObjectHandler
 							%u,
 							%u,
 							%u,
+							%s,
 							%u,
 							%u,
 							%u,
@@ -127,6 +130,7 @@ class MartinCartHandler extends XoopsObjectHandler
 							($order_uid),
 							($order_status),
 							($order_pay_method),
+							($order_pay),
 							($order_total_price),
 							($order_pay_money),
 							($order_coupon),
@@ -149,6 +153,41 @@ class MartinCartHandler extends XoopsObjectHandler
 		}
 
 		return $this->db->getInsertId();
+	}
+
+	/**
+	 * @change order pay
+	 * @method:
+	 * @license http://www.blags.org/
+	 * @created:2010年07月05日 20时22分
+	 * @copyright 1997-2010 The Martin Group
+	 * @author Martin <china.codehome@gmail.com> 
+	 * */
+	function ChangeOrderPay($order_id,$order_pay_method,$order_pay)
+	{
+		global $xoopsDB;
+		if(!$order_id || !$order_pay_method || !$order_pay) return false;
+		$sql = "UPDATE ".$xoopsDB->prefix("martin_order")." SET order_pay_method = $order_pay_method ,order_pay = '$order_pay' 
+			WHERE order_id = $order_id ";
+		return $xoopsDB->query($sql);
+	}
+
+	/**
+	 * @check order if close 
+	 * @method:
+	 * @license http://www.blags.org/
+	 * @created:2010年07月05日 22时43分
+	 * @copyright 1997-2010 The Martin Group
+	 * @author Martin <china.codehome@gmail.com> 
+	 * */
+	function CheckOrderClose($order_id)
+	{
+		if(!$order_id) return false;
+		global $xoopsDB;
+		$order_status = getModuleArray('order_status','order_status',true);
+		$sql = "SELECT * FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = $order_id AND order_status = ".count($order_status);
+		$row = $xoopsDB->fetchRow($xoopsDB->query($sql));
+		return is_array($row);
 	}
 
 	/**
@@ -207,6 +246,31 @@ class MartinCartHandler extends XoopsObjectHandler
 			if(!$xoopsDB->queryF($sql)) $result = false;
 		}
 		return $result;
+	}
+
+	/**
+	 * @get order info
+	 * @method:
+	 * @license http://www.blags.org/
+	 * @created:2010年07月05日 20时22分
+	 * @copyright 1997-2010 The Martin Group
+	 * @author Martin <china.codehome@gmail.com> 
+	 * */
+	function GetOrderInfo($order_id)
+	{
+		if(!$order_id || !is_int($order_id)) return $order_id;
+		global $xoopsDB;
+		$sql = "SELECT * FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = ".$order_id;
+		$row = $xoopsDB->fetchArray($xoopsDB->query($sql));
+		if(empty($row)) return $row;
+		$order_pay_method = getModuleArray('order_pay_method','order_pay_method',true);
+		$row['order_pay_method'] = intval($row['order_pay_method']);
+		$pays = (int)$row['order_pay_method'] == 2 ? getModuleArray('line_pays','line_pays',true) : getModuleArray('online_pays','online_pays',true);
+		//var_dump($pays);
+		$row['order_pay_str'] = isset($pays[$row['order_pay']]) ? $pays[$row['order_pay']] : null;
+		$row['order_pay_method'] = isset($order_pay_method['order_pay_method']) ? $order_pay_method['order_pay_method'] : null;
+		//var_dump($row);
+		return $row;
 	}
 
 }
