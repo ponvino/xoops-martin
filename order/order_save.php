@@ -4,6 +4,8 @@ include XOOPS_ROOT_PATH.'/modules/martin/include/common.php';
 if(!defined('MODULE_URL')) define('MODULE_URL',XOOPS_URL . '/modules/martin/');
 
 global $xoopsUser,$xoopsdModule;
+if(!$xoopsUser) redirect_header(XOOPS_URL,3,'非法访问.');
+
 $dateNumber = isset($_POST['dateNumber']) ? ($_POST['dateNumber']) : null;
 $service = isset($_POST['serviceNum']) ? ($_POST['serviceNum']) : null;
 $person_exchange = isset($_POST['person_exchange']) ? $_POST['person_exchange'] : null;
