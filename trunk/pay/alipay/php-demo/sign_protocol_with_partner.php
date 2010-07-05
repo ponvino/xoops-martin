@@ -17,8 +17,8 @@ $parameter = array(
 
 );
 $alipay = new alipay_service($parameter,$security_code,$sign_type);
-print_r($parameter );
-$link=$alipay->create_url();
+var_dump($parameter );
+echo$link=$alipay->create_url();
 print <<<EOT
 <br/>
 <a href= $link  target ="_blank">submit</a>
