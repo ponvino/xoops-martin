@@ -4,7 +4,7 @@ include XOOPS_ROOT_PATH.'/modules/martin/include/common.php';
 
 global $xoopsUser;
 
-if(!$xoopsUser) redirect_header(XOOPS_URL.'/user.php',3,'您还没登录.');
+if(!$xoopsUser) redirect_header(XOOPS_URL . '/user.php?xoops_redirect=/'.$_SERVER['REQUEST_URI'],1,'您还没有登录.');
 
 $group_id = isset($_GET['group_id']) ? intval($_GET['group_id']) : $id;
 $group_id = isset($_POST['group_id']) ? intval($_POST['group_id']) : $group_id;
