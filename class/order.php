@@ -21,6 +21,7 @@ class MartinOrder extends XoopsObject
 		$this->initVar("order_mode", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_uid", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_pay_method", XOBJ_DTYPE_INT, null, false);
+		$this->initVar("order_pay", XOBJ_DTYPE_TXTBOX, null, true, 25);
 		$this->initVar("order_status", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_total_price", XOBJ_DTYPE_INT, null, false);
 		$this->initVar("order_pay_money", XOBJ_DTYPE_INT, null, false);
@@ -65,6 +66,11 @@ class MartinOrder extends XoopsObject
 	function order_pay_method()
 	{
 		return $this->getVar("order_pay_method");
+	}
+
+	function order_pay($format = 'S')
+	{
+		return $this->getVar("order_pay",$format);
 	}
 
 	function order_status()
@@ -327,11 +333,15 @@ class MartinOrderHandler extends XoopsObjectHandler
 
 		global $xoopsDB;
 		//delete order room relation
-		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order_room");
+		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order_room")." WHERE order_id = ".$order->order_id();
 		$xoopsDB->queryF($sql);
 		//delete order query room relation
-		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order_query_room");
+		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order_query_room")." WHERE order_id = ".$order->order_id();
 		$xoopsDB->queryF($sql);
+		//delete order service
+		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order_service")." WHERE order_id = ".$order->order_id();
+		$xoopsDB->queryF($sql);
+		
 
 		$sql = "DELETE FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = ".$order->order_id();
 	
