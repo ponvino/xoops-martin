@@ -73,7 +73,7 @@ if($order_id = $cart_handler->saveCart($cartObj))
 	{
 		if(!$cart_handler->InsertOrderRoom($order_id,array($room_id), $dateNumber )) redirect_header('javascript:history.go(-1);' , 2 ,'房间写入失败,订单保存失败.');
 	}
-	if(is_array($service) && !empty($dateNumber))
+	if(is_array($service) && !empty($service))
 	{
 		if(!$cart_handler->InsertOrderService($order_id,$service)) redirect_header('javascript:history.go(-1);' , 2 ,'服务写入失败，订单保存失败.');
 	}
