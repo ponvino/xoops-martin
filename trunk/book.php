@@ -35,6 +35,8 @@ $this_url = str_replace('&check_in_date='.date('Y-m-d',$check_in_date),'',$this_
 $this_url = str_replace('&check_out_date='.$check_out_date,'',$this_url);
 $this_url = str_replace('&check_out_date='.date('Y-m-d',$check_out_date),'',$this_url);
 
+if(!$xoopsUser) redirect_header(XOOPS_URL . '/user.php?xoops_redirect=/'.$_SERVER['REQUEST_URI'],1,'您还没有登录.');
+
 $xoopsUser->cleanVars();
 $user = &$xoopsUser->cleanVars;
 //var_dump($user);
