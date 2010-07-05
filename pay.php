@@ -23,10 +23,8 @@ if($order_id > 0 && !empty($order_pay) && $order_pay_method > 0)
 			$msg = '我们已经收到您的订单,为了尽快订房请您及时付款.';
 			$change_url = XOOPS_URL .'/hotel/';
 		}else{
-			$config_file = MARTIN_ROOT_PATH . "pay/$order_pay/config/config.php";
-			if(file_exists($config_file)) include $config_file;
-			$config = ${$order_pay};
-			var_dump($config);
+			$pay_file = MARTIN_ROOT_PATH . "pay/$order_pay/$order_pay.php";
+			if(file_exists($pay_file)) include $pay_file;
 			exit;
 			$msg = '支付页面跳转中,请稍候....';
 			$change_url = XOOPS_URL .'/hotel/';
