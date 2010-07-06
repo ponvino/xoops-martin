@@ -14,6 +14,12 @@ if(!$order_id) redirect_header(XOOPS_URL,1,'非法闯入.');
 if($_POST && !$order_pay) redirect_header('javascript:history.go(-1);',1,'没有选择支付方式.');
 $order_pay_method = is_numeric($order_pay) ? 2 : 1;
 
+$order = $cart_handler->GetOrderInfo($order_id);
+if(!$order) redirect_header(XOOPS_URL,1,'非法闯入.');
+if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL,1,'非法闯入.');
+
+//var_dump($order);
+
 if($order_id > 0 && !empty($order_pay) && $order_pay_method > 0)
 {
 	if($cart_handler->ChangeOrderPay($order_id,$order_pay_method,$order_pay))
@@ -35,9 +41,6 @@ if($order_id > 0 && !empty($order_pay) && $order_pay_method > 0)
 	}
 }
 
-$order = $cart_handler->GetOrderInfo($order_id);
-if(!$order) redirect_header(XOOPS_URL,1,'非法闯入.');
-if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL,1,'非法闯入.');
 
 //var_dump($order['order_pay']);
 $xoopsOption["template_main"] = "martin_hotel_pay.html";

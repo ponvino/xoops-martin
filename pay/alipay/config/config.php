@@ -1,10 +1,10 @@
 <?php 
-$alipay['partner'] = '';
-$alipay['security_code'] = '';
-$alipay['seller_email'] = '';
+$alipay['partner'] = '2088202906554669';
+$alipay['security_code'] = 'usvkucchjpegj2fzv78zjs6cm836cbcg';
+$alipay['seller_email'] = 'cntravel2009@163.com';
 $alipay['_input_charset'] = 'utf-8';
 $alipay['sign_type'] = 'MD5';
 $alipay['transport'] = 'http';
-$alipay['notify_url'] = 'http://xoops/notify_url.php';
-$alipay['return_url'] = 'http:/xoops/return_url.php';
+$alipay['notify_url'] = 'http://xoops/modules/martin/pay/alipy/notify_url.php';
+$alipay['return_url'] = 'http://xoops/modules/martin/pay/alipy/return_url.php';
 ?>
