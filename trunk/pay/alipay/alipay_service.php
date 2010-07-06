@@ -24,7 +24,7 @@ class alipay_service {
 		$this->mysign         = '';
 		$this->transport      = $transport;
 		if($parameter['_input_charset'] == "")
-		$this->parameter['_input_charset']='GBK';
+		$this->parameter['_input_charset']='utf-8';
 		if($this->transport == "https") {
 			$this->gateway = "https://www.alipay.com/cooperate/gateway.do?";
 		} else $this->gateway = "httsp://www.alipay.com/cooperate/gateway.do?";
