@@ -17,7 +17,7 @@ class alipay_notify {
 	var $mysign;
 	var $_input_charset ;
 	var $transport;
-	function alipay_notify($partner,$security_code,$sign_type = "MD5",$_input_charset = "GBK",$transport= "https") {
+	function alipay_notify($partner,$security_code,$sign_type = "MD5",$_input_charset = "utf-8",$transport= "https") {
 		$this->partner     =   $partner;
 		$this->security_code = $security_code;
 		$this->sign_type = $sign_type;
@@ -141,7 +141,7 @@ class alipay_notify {
 	}
 
 	//实现多种字符编码方式
-	function charset_encode($input,$_output_charset ,$_input_charset ="GBK" ) {
+	function charset_encode($input,$_output_charset ,$_input_charset ="utf-8" ) {
 		$output = "";
 		if(!isset($_output_charset) )$_output_charset  = $this->parameter['_input_charset '];
 		if($_input_charset == $_output_charset || $input ==null ) {
@@ -155,7 +155,7 @@ class alipay_notify {
 	}
 
 	//实现多种字符解码方式
-	function charset_decode($input,$_input_charset ,$_output_charset="GBK"  ) {
+	function charset_decode($input,$_input_charset ,$_output_charset="utf-8"  ) {
 		$output = "";
 		if(!isset($_input_charset) )$_input_charset  = $this->_input_charset ;
 		if($_input_charset == $_output_charset || $input ==null ) {
