@@ -283,6 +283,26 @@ class MartinCartHandler extends XoopsObjectHandler
 		return $row;
 	}
 
+	/**
+	 * update order status
+	 * @access public
+	 * @return void
+	 * @copyright 1997-2010 The Lap Group
+	 * @author Martin <china.codehome@gmail.com> 
+	 * @created time :2010-07-06 16:57:45
+	 * */
+	function UpdateOrderStatus($order_id,$order_status)
+	{
+		if($order_status > 0 && $order_id)
+		{
+			global $xoopsDB;
+			$sql = "UPDATE ".$xoopsDB->prefix("martin_order")." SET order_status = $order_status WHERE order_id = ".$order_id;
+			return $xoopsDB->query($sql);
+		}
+		return false;
+		  
+	}
+
 }
 
 
