@@ -34,7 +34,7 @@ function  log_result($word) {
 	//chmod('log.txt',777);
 }
 
-var_dump($return_arr);exit;
+//var_dump($return_arr);exit;
 global $xoopsUser;
 $cart_handler =& xoops_getmodulehandler("cart", 'martin');
 $order = $cart_handler->GetOrderInfo($order_id);
