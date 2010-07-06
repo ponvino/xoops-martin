@@ -116,9 +116,9 @@ window.onload = function(){initialize('gmap',width,height,false);};
 	   <div class="listtop">
 	   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="14%" align="right">酒店提醒：</td>
-    <td colspan="3" width="37%"><{$hotel.hotel_environment}></td>
-    <td width="49%" rowspan="6" valign="top" align="right" style="border:0;"><div class="imgshow">
+    <td width="12%" align="right">行政区：</td>
+    <td colspan="3"><{$hotel.hotel_city}></td>
+    <td width="45%" rowspan="6" valign="top" align="right" style="border:0;"><div class="imgshow">
 	    <div class="image"><a class="light" rel="group" title="<{$hotel.hotel_image.0.alt}>" href="<{$module_url}>i.php?id=<{$hotel.hotel_image.0.filename}>"><img src="<{$module_url}>img.php?id=<{$hotel.hotel_image.0.filename}>&w=250&h=154" width="250" height="154" title="<{$hotel.hotel_image.0.alt}>"/></a></div>
 		<input type="hidden" id="p" value="0">
 		<div class="smallimg">
@@ -132,28 +132,29 @@ window.onload = function(){initialize('gmap',width,height,false);};
 			<li style="width:15px; margin:0;cursor:pointer; float:right; margin-right:10px; _margin-right:6px;" id="next"><img src="<{$module_url}>images/right.gif" width="15" height="25" border="0"/></li>
 		  </ul>
 		</div>
-	  </div>
-	</td>
+	  </div>	</td>
   </tr>
-  <tr>
-    <td align="right">行政区：</td>
+   <tr>
+    <td align="right">商圈：</td>
     <td colspan="3"><{$hotel.city_name}></td>
-  </tr>
+    </tr>
   <tr>
     <td align="right">开业时间：</td>
     <td colspan="3"><{$hotel.hotel_open_time|date_format:"%Y"}>年开业</td>
     </tr>
   <tr>
+    <td align="right">房间数量：</td>
+    <td colspan="3"><{$hotel.hotel_room_count}></td>
+    </tr>
+  <tr>
+    <td align="right">联系电话：</td>
+    <td width="16%"><{$hotel.hotel_telephone}></td>
+    <td width="12%">传真：</td>
+    <td width="15%">&nbsp;</td>
+  </tr>
+  <tr>
     <td align="right">地址：</td>
     <td colspan="3"><{$hotel.hotel_address}></td>
-    </tr>
-  <tr>
-    <td align="right">联系方式：</td>
-    <td colspan="3"><{$hotel.hotel_telephone}></td>
-    </tr>
-  <tr>
-    <td align="right">房间数量:</td>
-    <td colspan="3"><{$hotel.hotel_room_count}></td>
     </tr>
 </table>
 	  </div>
@@ -180,7 +181,7 @@ window.onload = function(){initialize('gmap',width,height,false);};
          <td width="12%"><p>直接预订<br />
 送现金券</p></td>
          <td width="12%">直接预定</td>
-         <td width="18%">直接预定参考价</td>
+         <td width="18%">查询预订参考价</td>
          <td width="14%">查询预定</td>
        </tr>
 <{foreach from=$hotel.room item=room}>
@@ -199,6 +200,10 @@ window.onload = function(){initialize('gmap',width,height,false);};
    <div class="hotellist"><div class="hoteltitle bookingtitle">
 	<div class="lefttitle">酒店设施与服务</div></div>
 	<div class="listclass"><{$hotel.hotel_facility}></div>
+   </div>
+   <div class="hotellist"><div class="hoteltitle bookingtitle">
+	<div class="lefttitle">酒店提醒</div></div>
+	<div class="listclass"><{$hotel.hotel_environment}></div>
    </div>
    <div class="hotellist">
    <div class="hoteltitle bookingtitle">

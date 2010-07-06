@@ -58,7 +58,6 @@ function GetRoom(ele)
 	 <div class="listtitle">
 	 <ul>
 		<li class="titleleft">排序方式:</li>
-		<li><span class="info">港捷旅推荐</a></span>
 		<li><a href="<{$this_url}>&amp;Order=room_price&amp;By=<{$this_by}>">价格</a></li>
 		<li><a href="<{$this_url}>&amp;Order=hotel_star&amp;By=<{$this_by}>">酒店星级</a></li>
 		<li><a href="<{$this_url}>&amp;Order=room_is_totay_special&amp;By=<{$this_by}>">今日特价</a></li>
@@ -71,18 +70,43 @@ function GetRoom(ele)
 			<div class="topright">
 				<p class="title"><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}>"><{$hotel.hotel_name}></a></p>
 				<p><{$hotel.hotel_description}></p>
-				<p>所在行政区：<{$hotel.city_name}></p>
+				<p><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="14%" align="right">行政区：</td>
+    <td width="42%"><{$hotel.hotel_city}></td>
+    <td width="14%" align="right">商圈：</td>
+    <td width="30%"><{$hotel.city_name}></td>
+  </tr>
+  <tr>
+    <td align="right">开业时间：</td>
+    <td><{$hotel.hotel_open_time|date_format:"%Y"}>年开业</td>
+    <td align="right">房间数量：</td>
+    <td><{$hotel.hotel_room_count}></td>
+  </tr>
+  <tr>
+    <td align="right">房间数量：</td>
+    <td><{$hotel.hotel_room_count}></td>
+    <td align="right">联系电话：</td>
+    <td><{$hotel.hotel_telephone}></td>
+  </tr>
+  <tr>
+    <td align="right">地址：</td>
+    <td colspan="3"><{$hotel.hotel_address}></td>
+    </tr>
+</table>
+</p>
 			</div>
 		</div>
 		<div class="righttitle">
 			<table width="100%" border="0" cellspacing="0" cellpadding="5">
 			<tr align="center" class="bld">
-				<td width="20%">房型</td>
-				<td width="11%">床型</td>
-				<td width="13%">直接预订价</td>
+				<td width="18%">房型</td>
+				<td width="10%">床型</td>
+				<td width="10%"><p>直接<br />
+			    预订价</p></td>
 				<td width="12%"><p>直接预订<br />	送现金券</p></td>
 				<td width="12%">直接预订</td>
-				<td width="17%">查询价格参考</td>
+				<td width="23%">查询预订参考价</td>
 				<td width="15%">查询预订</td>
 			</tr>
 		<{foreach item=room name=room from=$rooms[$hotel.hotel_id]}>
