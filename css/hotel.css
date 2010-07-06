@@ -633,10 +633,16 @@ line-height:24px;
 color:#3F7E15;
 text-decoration:underline;
 }
+.leftblock .hotellist .listclass .listtop .topright table{
+color:#000000;
+font-size:14px;
+}
+.leftblock .hotellist .listclass .listtop .topright table td{
+height:24px;
+line-height:24px;
+}
 .leftblock .hotellist .listclass .listtop table{
 color:#000000;
-height:32px;
-line-height:32px;
 font-size:14px;
 }
 .leftblock .hotellist .listclass .listtop table td{
@@ -644,6 +650,7 @@ border-bottom:#dddddd 1px dotted;
 height:32px;
 line-height:32px;
 }
+
 .imgshow {
 width:258px; border:#CCCCCC 1px solid; overflow:hidden;
 height:198px;
