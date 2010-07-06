@@ -1,17 +1,17 @@
 <?php
 /**
-¡¡* ÀàÃû alipay_notify
-¡¡* ¹¦ÄÜ  Ö§¸¶±¦Íâ²¿·şÎñ½Ó¿Ú¿ØÖÆ
-¡¡* °æ±¾  0.6
-¡¡* ÈÕÆÚ  2006-6-10
-¡¡* ×÷Õß   http://www.buybay.org
-  * ÁªÏµ   Email£º raftcham@hotmail.com  Homepage£ºhttp://www.buybay.org
-¡¡* °æÈ¨   Copyright2006 Buybay NetTech
-¡¡*/
+ã€€* ç±»å alipay_notify
+ã€€* åŠŸèƒ½  æ”¯ä»˜å®å¤–éƒ¨æœåŠ¡æ¥å£æ§åˆ¶
+ã€€* ç‰ˆæœ¬  0.6
+ã€€* æ—¥æœŸ  2006-6-10
+ã€€* ä½œè€…   http://www.buybay.org
+  * è”ç³»   Emailï¼š raftcham@hotmail.com  Homepageï¼šhttp://www.buybay.org
+ã€€* ç‰ˆæƒ   Copyright2006 Buybay NetTech
+ã€€*/
 
 class alipay_notify {
 	var $gateway;
-	var $security_code;  	//°²È«Ğ£ÑéÂë
+	var $security_code;  	//å®‰å…¨æ ¡éªŒç 
 	var $partner;
 	var $sign_type;
 	var $mysign;
@@ -29,7 +29,7 @@ class alipay_notify {
 		} else $this->gateway = "http://notify.alipay.com/trade/notify_query.do?";
 
 	}
-	function notify_verify() {   //¶Ônotify_urlµÄÈÏÖ¤
+	function notify_verify() {   //å¯¹notify_urlçš„è®¤è¯
 		if($this->transport == "https") {
 			$veryfy_url = $this->gateway. "service=notify_verify" ."&partner=" .$this->partner. "&notify_id=".$_POST["notify_id"];
 		} else {
@@ -41,13 +41,13 @@ class alipay_notify {
 		while (list ($key, $val) = each ($sort_post)) {
 			$arg.=$key."=".$val."&";
 		}
-		$prestr = substr($arg,0,count($arg)-2);  //È¥µô×îºóÒ»¸ö&ºÅ
+		$prestr = substr($arg,0,count($arg)-2);  //å»æ‰æœ€åä¸€ä¸ª&å·
 		$this->mysign = $this->sign($prestr.$this->security_code);
 		if (eregi("true$",$veryfy_result) && $this->mysign == $_POST["sign"])  {
 			return true;
 		} else return false;
 	}
-	function return_verify() {   //¶Ôreturn_urlµÄÈÏÖ¤
+	function return_verify() {   //å¯¹return_urlçš„è®¤è¯
         if($this->transport == "https") {
 			$veryfy_url = $this->gateway. "service=notify_verify" ."&partner=" .$this->partner. "&notify_id=".$_GET["notify_id"];
 		} else {
@@ -60,11 +60,11 @@ class alipay_notify {
 			if($key != "sign" && $key != "sign_type")
 			$arg.=$key."=".$val."&";
 		}
-		$prestr = substr($arg,0,count($arg)-2);  //È¥µô×îºóÒ»¸ö&ºÅ
+		$prestr = substr($arg,0,count($arg)-2);  //å»æ‰æœ€åä¸€ä¸ª&å·
 		$this->mysign = $this->sign($prestr.$this->security_code);
 	
 	log_result("return_url_log=".$_GET["sign"]."-------------------".$this->mysign."&".$this->charset_decode(implode(",",$_GET),$this->_input_charset ));
-	//**********************************ÉÏÃæĞ´ÈÕÖ¾
+	//**********************************ä¸Šé¢å†™æ—¥å¿—
 		if (eregi("true$",$veryfy_result) && $this->mysign == $_GET["sign"])  {
 			return true;
 		}else return false;
@@ -122,15 +122,15 @@ class alipay_notify {
 		if($this->sign_type == 'MD5') {
 			$sign = md5($prestr);
 		}elseif($this->sign_type =='DSA') {
-			//DSA Ç©Ãû·½·¨´ıºóĞø¿ª·¢
-			die("DSA Ç©Ãû·½·¨´ıºóĞø¿ª·¢£¬ÇëÏÈÊ¹ÓÃMD5Ç©Ãû·½Ê½");
+			//DSA ç­¾åæ–¹æ³•å¾…åç»­å¼€å‘
+			die("DSA ç­¾åæ–¹æ³•å¾…åç»­å¼€å‘ï¼Œè¯·å…ˆä½¿ç”¨MD5ç­¾åæ–¹å¼");
 		}else {
-			die("Ö§¸¶±¦Ôİ²»Ö§³Ö".$this->sign_type."ÀàĞÍµÄÇ©Ãû·½Ê½");
+			die("æ”¯ä»˜å®æš‚ä¸æ”¯æŒ".$this->sign_type."ç±»å‹çš„ç­¾åæ–¹å¼");
 		}
 		return $sign;
 
 	}
-	function para_filter($parameter) { //³ıÈ¥Êı×éÖĞµÄ¿ÕÖµºÍÇ©ÃûÄ£Ê½
+	function para_filter($parameter) { //é™¤å»æ•°ç»„ä¸­çš„ç©ºå€¼å’Œç­¾åæ¨¡å¼
 		$para = array();
 		while (list ($key, $val) = each ($parameter)) {
 			if($key == "sign" || $key == "sign_type" || $val == "")continue;
@@ -140,7 +140,7 @@ class alipay_notify {
 		return $para;
 	}
 
-	//ÊµÏÖ¶àÖÖ×Ö·û±àÂë·½Ê½
+	//å®ç°å¤šç§å­—ç¬¦ç¼–ç æ–¹å¼
 	function charset_encode($input,$_output_charset ,$_input_charset ="utf-8" ) {
 		$output = "";
 		if(!isset($_output_charset) )$_output_charset  = $this->parameter['_input_charset '];
@@ -154,7 +154,7 @@ class alipay_notify {
 		return $output;
 	}
 
-	//ÊµÏÖ¶àÖÖ×Ö·û½âÂë·½Ê½
+	//å®ç°å¤šç§å­—ç¬¦è§£ç æ–¹å¼
 	function charset_decode($input,$_input_charset ,$_output_charset="utf-8"  ) {
 		$output = "";
 		if(!isset($_input_charset) )$_input_charset  = $this->_input_charset ;

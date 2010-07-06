@@ -1,22 +1,22 @@
 <?php
 /**
-¡¡* ÀàÃû alipay_service
-¡¡* ¹¦ÄÜ  Ö§¸¶±¦Íâ²¿·şÎñ½Ó¿Ú¿ØÖÆ
-¡¡* °æ±¾  0.6
-¡¡* ÈÕÆÚ  2006-6-10
-¡¡* ×÷Õß   http://www.buybay.org
-  * ÁªÏµ   Email£º raftcham@hotmail.com  Homepage£ºhttp://www.buybay.org
-¡¡* °æÈ¨   Copyright2006 Buybay NetTech
-¡¡*/
+ã€€* ç±»å alipay_service
+ã€€* åŠŸèƒ½  æ”¯ä»˜å®å¤–éƒ¨æœåŠ¡æ¥å£æ§åˆ¶
+ã€€* ç‰ˆæœ¬  0.6
+ã€€* æ—¥æœŸ  2006-6-10
+ã€€* ä½œè€…   http://www.buybay.org
+  * è”ç³»   Emailï¼š raftcham@hotmail.com  Homepageï¼šhttp://www.buybay.org
+ã€€* ç‰ˆæƒ   Copyright2006 Buybay NetTech
+ã€€*/
 
 class alipay_service {
 
-	var $gateway = "http://www.alipay3.net/cooperate/gateway.do?";         //Ö§¸¶½Ó¿Ú
-	var $parameter;       //È«²¿ĞèÒª´«µİµÄ²ÎÊı
-	var $security_code;  	//°²È«Ğ£ÑéÂë
-	var $mysign;             //Ç©Ãû
+	var $gateway = "http://www.alipay3.net/cooperate/gateway.do?";         //æ”¯ä»˜æ¥å£
+	var $parameter;       //å…¨éƒ¨éœ€è¦ä¼ é€’çš„å‚æ•°
+	var $security_code;  	//å®‰å…¨æ ¡éªŒç 
+	var $mysign;             //ç­¾å
 
-	//¹¹ÔìÖ§¸¶±¦Íâ²¿·şÎñ½Ó¿Ú¿ØÖÆ
+	//æ„é€ æ”¯ä»˜å®å¤–éƒ¨æœåŠ¡æ¥å£æ§åˆ¶
 	function alipay_service($parameter,$security_code,$sign_type = "MD5",$transport= "https") {
 		$this->parameter      = $this->para_filter($parameter);
 		$this->security_code  = $security_code;
@@ -34,7 +34,7 @@ class alipay_service {
 		while (list ($key, $val) = each ($sort_array)) {
 			$arg.=$key."=".$this->charset_encode($val,$this->parameter['_input_charset'])."&";
 		}
-		$prestr = substr($arg,0,count($arg)-2);  //È¥µô×îºóÒ»¸öÎÊºÅ
+		$prestr = substr($arg,0,count($arg)-2);  //å»æ‰æœ€åä¸€ä¸ªé—®å·
 		$this->mysign = $this->sign($prestr.$this->security_code);
 	}
 
@@ -76,15 +76,15 @@ class alipay_service {
 		if($this->sign_type == 'MD5') {
 			$mysign = md5($prestr);
 		}elseif($this->sign_type =='DSA') {
-			//DSA Ç©Ãû·½·¨´ıºóĞø¿ª·¢
-			die("DSA Ç©Ãû·½·¨´ıºóĞø¿ª·¢£¬ÇëÏÈÊ¹ÓÃMD5Ç©Ãû·½Ê½");
+			//DSA ç­¾åæ–¹æ³•å¾…åç»­å¼€å‘
+			die("DSA ç­¾åæ–¹æ³•å¾…åç»­å¼€å‘ï¼Œè¯·å…ˆä½¿ç”¨MD5ç­¾åæ–¹å¼");
 		}else {
-			die("Ö§¸¶±¦Ôİ²»Ö§³Ö".$this->sign_type."ÀàĞÍµÄÇ©Ãû·½Ê½");
+			die("æ”¯ä»˜å®æš‚ä¸æ”¯æŒ".$this->sign_type."ç±»å‹çš„ç­¾åæ–¹å¼");
 		}
 		return $mysign;
 
 	}
-	function para_filter($parameter) { //³ıÈ¥Êı×éÖĞµÄ¿ÕÖµºÍÇ©ÃûÄ£Ê½
+	function para_filter($parameter) { //é™¤å»æ•°ç»„ä¸­çš„ç©ºå€¼å’Œç­¾åæ¨¡å¼
 		$para = array();
 		while (list ($key, $val) = each ($parameter)) {
 			if($key == "sign" || $key == "sign_type" || $val == "")continue;
@@ -93,7 +93,7 @@ class alipay_service {
 		}
 		return $para;
 	}
-	//ÊµÏÖ¶àÖÖ×Ö·û±àÂë·½Ê½
+	//å®ç°å¤šç§å­—ç¬¦ç¼–ç æ–¹å¼
 	function charset_encode($input,$_output_charset ,$_input_charset ="utf-8" ) {
 		$output = "";
 		if(!isset($_output_charset) )$_output_charset  = $this->parameter['_input_charset '];

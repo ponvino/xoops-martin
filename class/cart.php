@@ -185,7 +185,7 @@ class MartinCartHandler extends XoopsObjectHandler
 		if(!$order_id) return false;
 		global $xoopsDB;
 		$order_status = getModuleArray('order_status','order_status',true);
-		$sql = "SELECT * FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = $order_id AND order_status = ".count($order_status);
+		$sql = "SELECT * FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = $order_id AND order_status > 6 ";//"= ".count($order_status);
 		$row = $xoopsDB->fetchRow($xoopsDB->query($sql));
 		return is_array($row);
 	}
@@ -293,11 +293,11 @@ class MartinCartHandler extends XoopsObjectHandler
 	 * */
 	function UpdateOrderStatus($order_id,$order_status)
 	{
-		if($order_status > 0 && $order_id)
+		if($order_status > 0 && $order_id > 0)
 		{
 			global $xoopsDB;
 			$sql = "UPDATE ".$xoopsDB->prefix("martin_order")." SET order_status = $order_status WHERE order_id = ".$order_id;
-			return $xoopsDB->query($sql);
+			return $xoopsDB->queryF($sql);
 		}
 		return false;
 		  
