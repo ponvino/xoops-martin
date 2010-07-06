@@ -5,6 +5,6 @@ $alipay['seller_email'] = 'cntravel2009@163.com';
 $alipay['_input_charset'] = 'utf-8';
 $alipay['sign_type'] = 'MD5';
 $alipay['transport'] = 'http';
-$alipay['notify_url'] = '/modules/martin/pay/alipy/notify_url.php';
-$alipay['return_url'] = '/modules/martin/pay/alipy/return_url.php';
+$alipay['notify_url'] = '/modules/martin/pay/alipay/notify_url.php';
+$alipay['return_url'] = '/modules/martin/pay/alipay/return_url.php';
 ?>
