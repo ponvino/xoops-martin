@@ -45,8 +45,12 @@ $verify_result = $alipay->return_verify();
 //echo urldecode($_SERVER["QUERY_STRING"]);
 if($verify_result) {
 	//更新订单状态
+	/*if($order['order_pay_money'] != $total_fee)
+	{
+		redirect_header(XOOPS_URL,1,'非法访问.');
+	}*/
 	$cart_handler->UpdateOrderStatus($order_id,7);
-	$msg = '我们已经收到您的订单,我们会尽快为您定房.';
+	$msg = '支付成功,我们已经收到您的订单,我们会尽快为您定房.';
 	$change_url = XOOPS_URL .'/hotel/';
 	//echo "success";
 	//这里放入你自定义代码,比如根据不同的trade_status进行不同操作
