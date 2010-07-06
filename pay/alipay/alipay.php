@@ -46,6 +46,7 @@ $parameter = array(
 	"royalty_type"=> "10",
 	//测试
 	"royalty_parameters"=> $xoopsUser->email()."^0.01^酒店预定",
+	"order_id"=>$order_id,
 	//"royalty_parameters"=> $xoopsUser->email()."^".$order['order_pay_money']."^酒店预定",
 );
 
@@ -57,4 +58,4 @@ $alipay = new alipay_service($parameter,$security_code,$sign_type);
 $link=$alipay->create_url();
 //echo $link;exit;
 
-redirect_header($link,2,'支付页面跳转.....');
+redirect_header($link,2,'支付页面跳转中,请稍候....');
