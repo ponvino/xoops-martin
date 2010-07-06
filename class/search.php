@@ -73,9 +73,10 @@ class MartinSearchHandler extends XoopsObjectHandler
 		}
 		$city_ids = $this->GetCityIds($hotel_address);
 		//var_dump($Data);
-		$sql = "SELECT h.* FROM ".$this->db->prefix("martin_hotel")." h ";
+		$sql = "SELECT h.*,hc.city_name as hotel_city FROM ".$this->db->prefix("martin_hotel")." h ";
 		$sql .= "INNER JOIN ".$this->db->prefix("martin_room")." r ON (h.hotel_id = r.hotel_id) ";
 		$sql .= "INNER JOIN ".$this->db->prefix("martin_room_price")." rp ON (r.room_id = rp.room_id) ";
+		$sql .= "INNER JOIN ".$this->db->prefix("martin_hotel_city")." hc ON (h.hotel_city = hc.city_id) ";
 		$sql .= " WHERE 1 = 1 ";
 		$sql .= (empty($hotel_address) || empty($hotel_ids)) ? "" : $city_ids." IN h.hotel_city_id ";
 		$sql .= empty($hotel_name) ? "" : "AND h.hotel_name LIKE '%$hotel_name%' ";

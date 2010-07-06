@@ -231,6 +231,8 @@ class MartinHotelHandler extends XoopsObjectHandler
             return $obj;
         }
 		$cityList = & self::getCityList();
+		$hotel_city = $obj_array[0]->hotel_city();
+		$obj_array[0]->setVar('hotel_city',$cityList[$hotel_city]);
 		$city_ids = explode(',',$obj_array[0]->hotel_city_id());
 		foreach($city_ids as $id)
 		{
