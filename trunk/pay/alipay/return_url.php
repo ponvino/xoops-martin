@@ -1,6 +1,16 @@
 <?php
 require_once("alipay_notify.php");
-require_once("alipay_config.php");
+require_once("config/config.php");
+
+$config = ${$order_pay};
+if(is_array($config))
+{
+	foreach($config as $key => $value)
+	{
+		${$key} = $value;
+	}
+}
+
 $alipay = new alipay_notify($partner,$security_code,$sign_type,$_input_charset,$transport);
 $verify_result = $alipay->return_verify();
 //echo urldecode($_SERVER["QUERY_STRING"]);
