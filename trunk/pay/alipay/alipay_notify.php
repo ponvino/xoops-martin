@@ -48,7 +48,7 @@ class alipay_notify {
 		} else return false;
 	}
 	function return_verify() {   //对return_url的认证
-         if($this->transport == "https") {
+        if($this->transport == "https") {
 			$veryfy_url = $this->gateway. "service=notify_verify" ."&partner=" .$this->partner. "&notify_id=".$_GET["notify_id"];
 		} else {
 			$veryfy_url = $this->gateway. "notify_id=".$_GET["notify_id"]."&partner=" .$this->partner;
