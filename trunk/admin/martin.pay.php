@@ -57,7 +57,7 @@ switch($action)
 			echo "<form name='op' id='op' action='?action=save' method='post' onsubmit='return xoopsFormValidate_op();' enctype='multipart/form-data'><table width='100%' class='outer' cellspacing='1'><tbody><tr><th colspan='2'>酒店服务</th></tr>";
 			foreach($$key as $k => $value)
 			{
-				echo "<tr valign='top' align='left'><td class='head'>$k</td><td class='even'><input type='text' name='config[$k]' size='45' maxlength='45' value='$value' /></td></tr>";
+				echo "<tr valign='top' align='left'><td class='head'>$k</td><td class='even'><input type='text' name='config[$k]' size='45' value='$value' /></td></tr>";
 			}
 			echo "<tr valign='top' align='left'><td class='head'></td><td class='even'><input type='submit' class='formButton' name=''  id='' value='修改' onclick=\"this.form.elements.op.value='addcategory'\" /><input type='reset' class='formButton' name=''  id='' value='清空' /><input type='button' class='formButton' name=''  id='' value='cancel' onclick='history.go(-1)' /></td></tr></tbody></table><input type='hidden' name='key' id='key' value='$key' /></form></div>";
 		martin_close_collapsable('createtable', 'createtableicon');

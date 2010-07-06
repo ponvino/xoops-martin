@@ -259,7 +259,7 @@ class MartinCartHandler extends XoopsObjectHandler
 	function GetOrderInfo($order_id)
 	{
 		if(!$order_id || !is_int($order_id)) return $order_id;
-		global $xoopsDB;
+		global $xoopsDB,$xoopsModuleConfig;
 		$sql = "SELECT * FROM ".$xoopsDB->prefix("martin_order")." WHERE order_id = ".$order_id;
 		$row = $xoopsDB->fetchArray($xoopsDB->query($sql));
 		if(empty($row)) return $row;
@@ -270,6 +270,16 @@ class MartinCartHandler extends XoopsObjectHandler
 		$row['order_pay_str'] = isset($pays[$row['order_pay']]) ? $pays[$row['order_pay']] : null;
 		$row['order_pay_method'] = isset($order_pay_method['order_pay_method']) ? $order_pay_method['order_pay_method'] : null;
 		//var_dump($row);
+		$sql = "SELECT r.room_name,r.room_bed_info,h.hotel_name,h.hotel_alias FROM ".$xoopsDB->prefix("martin_room")." r 
+			INNER JOIN ".$xoopsDB->prefix("martin_hotel")." h ON (r.hotel_id = h.hotel_id) 
+			INNER JOIN ".$xoopsDB->prefix("martin_order_room")." mor ON (r.room_id = mor.room_id) WHERE mor.order_id = $order_id LIMIT 1";
+		$row_room = $xoopsDB->fetchArray($xoopsDB->query($sql));
+		
+		$row['room_name'] = $row_room['hotel_name'] . '-' . $row_room['room_name'];
+		$row['hotel_name'] = $row_room['hotel_name'];
+		$row['room_info'] = $row_room['room_bed_info'];
+		$row['room_url'] = XOOPS_URL . "/hotel-" . $row_room['hotel_alias'] . $xoopsModuleConfig['hotel_static_prefix'];
+		unset($row_room);
 		return $row;
 	}
 

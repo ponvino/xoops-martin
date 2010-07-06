@@ -94,7 +94,7 @@ class alipay_service {
 		return $para;
 	}
 	//实现多种字符编码方式
-	function charset_encode($input,$_output_charset ,$_input_charset ="GBK" ) {
+	function charset_encode($input,$_output_charset ,$_input_charset ="utf-8" ) {
 		$output = "";
 		if(!isset($_output_charset) )$_output_charset  = $this->parameter['_input_charset '];
 		if($_input_charset == $_output_charset || $input ==null) {
