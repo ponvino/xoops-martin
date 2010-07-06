@@ -1,13 +1,13 @@
 <?php
 /**
-¡¡* Ãû³Æ ·µ»ØÒ³Ãæ
-¡¡* ¹¦ÄÜ  Ö§¸¶±¦Íâ²¿·þÎñ½Ó¿Ú¿ØÖÆ
-¡¡* °æ±¾  0.6
-¡¡* ÈÕÆÚ  2006-6-10
-¡¡* ×÷Õß   http://www.buybay.org
-  * ÁªÏµ   Email£º raftcham@hotmail.com  Homepage£ºhttp://www.buybay.org
-¡¡* °æÈ¨   Copyright2006 Buybay NetTech
-¡¡*/
+ã€€* åç§° è¿”å›žé¡µé¢
+ã€€* åŠŸèƒ½  æ”¯ä»˜å®å¤–éƒ¨æœåŠ¡æŽ¥å£æŽ§åˆ¶
+ã€€* ç‰ˆæœ¬  0.6
+ã€€* æ—¥æœŸ  2006-6-10
+ã€€* ä½œè€…   http://www.buybay.org
+  * è”ç³»   Emailï¼š raftcham@hotmail.com  Homepageï¼šhttp://www.buybay.org
+ã€€* ç‰ˆæƒ   Copyright2006 Buybay NetTech
+ã€€*/
 require_once("alipay_notify.php");
 require_once("alipay_config.php");
 $alipay = new alipay_notify($partner,$security_code,$sign_type,$_input_charset,$transport);
@@ -16,18 +16,18 @@ if($verify_result) {
 	
 	
 	echo "success";
-	//ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë,±ÈÈç¸ù¾Ý²»Í¬µÄtrade_status½øÐÐ²»Í¬²Ù×÷
-	log_result("verify_success"); //½«ÑéÖ¤½á¹û´æÈëÎÄ¼þ	
+	//è¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ,æ¯”å¦‚æ ¹æ®ä¸åŒçš„trade_statusè¿›è¡Œä¸åŒæ“ä½œ
+	log_result("verify_success"); //å°†éªŒè¯ç»“æžœå­˜å…¥æ–‡ä»¶	
 }
 else  {
 	echo "fail";
-	//ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë£¬ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë,±ÈÈç¸ù¾Ý²»Í¬µÄtrade_status½øÐÐ²»Í¬²Ù×÷
+	//è¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ï¼Œè¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ,æ¯”å¦‚æ ¹æ®ä¸åŒçš„trade_statusè¿›è¡Œä¸åŒæ“ä½œ
 	log_result ("verify_failed");
 }
 function  log_result($word) {
 	$fp = fopen("log.txt","a");	
 	flock($fp, LOCK_EX) ;
-	fwrite($fp,$word."£ºÖ´ÐÐÈÕÆÚ£º".strftime("%Y%m%d%H%I%S",time())."\t\n");
+	fwrite($fp,$word."ï¼šæ‰§è¡Œæ—¥æœŸï¼š".strftime("%Y%m%d%H%I%S",time())."\t\n");
 	flock($fp, LOCK_UN); 
 	fclose($fp);
 }

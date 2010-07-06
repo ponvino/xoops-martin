@@ -14,7 +14,7 @@ if(is_array($config))
 		${$key} = $value;
 	}
 }
-//alipay·µ»Ø²ÎÊı
+//alipayè¿”å›å‚æ•°
 $return_arr = $_GET;
 if(is_array($return_arr))
 {
@@ -28,39 +28,41 @@ if(is_array($return_arr))
 function  log_result($word) {
 	$fp = fopen("log.txt","a");	
 	flock($fp, LOCK_EX) ;
-	fwrite($fp,$word."£ºÖ´ĞĞÈÕÆÚ£º".strftime("%Y%m%d%H%I%S",time())."\t\n");
+	fwrite($fp,$word."ï¼šæ‰§è¡Œæ—¥æœŸï¼š".strftime("%Y%m%d%H%I%S",time())."\t\n");
 	flock($fp, LOCK_UN); 
 	fclose($fp);
 	//chmod('log.txt',777);
 }
 
-//var_dump($return_arr);exit;
+//var_dump($out_trade_no);exit;
+
+$order_id = (int)$out_trade_no;
 global $xoopsUser;
 $cart_handler =& xoops_getmodulehandler("cart", 'martin');
 $order = $cart_handler->GetOrderInfo($order_id);
-if(!$order) redirect_header(XOOPS_URL,1,'·Ç·¨´³Èë.');
-if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL,1,'·Ç·¨´³Èë.');
+if(!$order) redirect_header(XOOPS_URL,1,'éæ³•é—¯å…¥.');
+if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL,1,'éæ³•é—¯å…¥.');
 
 $alipay = new alipay_notify($partner,$security_code,$sign_type,$_input_charset,$transport);
 $verify_result = $alipay->return_verify();
 //echo urldecode($_SERVER["QUERY_STRING"]);
 if($verify_result) {
-	//¸üĞÂ¶©µ¥×´Ì¬
+	//æ›´æ–°è®¢å•çŠ¶æ€
 	/*if($order['order_pay_money'] != $total_fee)
 	{
-		redirect_header(XOOPS_URL,1,'·Ç·¨·ÃÎÊ.');
+		redirect_header(XOOPS_URL,1,'éæ³•è®¿é—®.');
 	}*/
 	$cart_handler->UpdateOrderStatus($order_id,7);
-	$msg = 'Ö§¸¶³É¹¦,ÎÒÃÇÒÑ¾­ÊÕµ½ÄúµÄ¶©µ¥,ÎÒÃÇ»á¾¡¿ìÎªÄú¶¨·¿.';
+	$msg = 'æ”¯ä»˜æˆåŠŸ,æˆ‘ä»¬å·²ç»æ”¶åˆ°æ‚¨çš„è®¢å•,æˆ‘ä»¬ä¼šå°½å¿«ä¸ºæ‚¨å®šæˆ¿.';
 	$change_url = XOOPS_URL .'/hotel/';
 	//echo "success";
-	//ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë,±ÈÈç¸ù¾İ²»Í¬µÄtrade_status½øĞĞ²»Í¬²Ù×÷
-	log_result("verify_success"); //½«ÑéÖ¤½á¹û´æÈëÎÄ¼ş	
+	//è¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ,æ¯”å¦‚æ ¹æ®ä¸åŒçš„trade_statusè¿›è¡Œä¸åŒæ“ä½œ
+	log_result("verify_success"); //å°†éªŒè¯ç»“æœå­˜å…¥æ–‡ä»¶	
 }
 else  {
-	$msg = 'Ö§¸¶Ê§°Ü,ÎªÁË¾¡¿ì¶©·¿ÇëÄú¼°Ê±¸¶¿î.';
-	$change_url = MODULE_URL .'pay.php?order_id'.$order_id;
-	//ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë£¬ÕâÀï·ÅÈëÄã×Ô¶¨Òå´úÂë,±ÈÈç¸ù¾İ²»Í¬µÄtrade_status½øĞĞ²»Í¬²Ù×÷
+	$msg = 'æ”¯ä»˜å¤±è´¥,ä¸ºäº†å°½å¿«è®¢æˆ¿è¯·æ‚¨åŠæ—¶ä»˜æ¬¾.';
+	$change_url = MODULE_URL .'pay.php?order_id='.$order_id;
+	//è¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ï¼Œè¿™é‡Œæ”¾å…¥ä½ è‡ªå®šä¹‰ä»£ç ,æ¯”å¦‚æ ¹æ®ä¸åŒçš„trade_statusè¿›è¡Œä¸åŒæ“ä½œ
 	log_result ("verify_failed");
 }
 redirect_header($change_url,2,$msg);
