@@ -103,8 +103,10 @@ class MartinSearchHandler extends XoopsObjectHandler
 			}
 			$row['city_name'] = implode('、',$city_name);
 			$row['hotel_image'] = unserialize($row['hotel_image']);
-			$row['hotel_google'] = unserialize($row['hotel_google']);
+			$row['hotel_google'] = unserialize(unserialize($row['hotel_google']));
+			//var_dump($row['hotel_google']);
 			$rows[] = $row;
+			unset($city_name);
 		}
 		//$rows = $this->GetRows($sql,'hotel_id');
 		return $rows;

@@ -14,7 +14,7 @@ function selectTag(showContent,selfObj){
 	}
 	document.getElementById(showContent).style.display = "block";
 }
-function initialize(id,width,height,showclose) {
+function initialize(id,width,height,showclose,lat,lng,hotel_name,message,ImgStr) {
 	if (GBrowserIsCompatible()) {
 		var map = new GMap2(document.getElementById(id),{ size: new GSize(width,height) } );
 		map.setCenter(new GLatLng(lat,lng), 13);
@@ -24,7 +24,7 @@ function initialize(id,width,height,showclose) {
 		map.setUI(customUI);
 		var latlng = new GLatLng(lat,lng);
 		var marker = new GMarker(latlng);
-		var myHtml = "<font color=\"blue\">" + hotel_name[0] + "</font><br>" + ImgStr + message[0];
+		var myHtml = "<font color=\"blue\">" + hotel_name+ "</font><br>" + ImgStr + message;
 		//点击显示
 		GEvent.addListener(marker,"click", function() {
 			map.openInfoWindowHtml(latlng, myHtml);
