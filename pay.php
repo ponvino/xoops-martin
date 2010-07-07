@@ -18,7 +18,7 @@ $order_pay_method = is_numeric($order_pay) ? 2 : 1;
 
 $order = $cart_handler->GetOrderInfo($order_id);
 if(!$order) redirect_header(XOOPS_URL,1,'非法闯入.');
-if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL,1,'非法闯入.');
+if($cart_handler->CheckOrderClose($order_id)) redirect_header(XOOPS_URL . '/hotel/',1,'该订单已经支付.');
 
 //var_dump($order);
 
