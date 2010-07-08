@@ -98,12 +98,13 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
 <!--面包线-->
   <div class="breadcrums"><span>您所在的位置：</span>首页</div>
 <!--结束面包线-->
-
+<{assign var=star value='images/star.gif'}>
+<{assign var=star value="<img src='$module_url$star'>"}>
 <div class="blocknh">
 <!--新闻-->
 <div class="leftblock">
    <div class="intro_title">
-     <div class="intro_left"><{$hotel.hotel_name}><img src="images/star.gif" width="18" height="18" /><img src="images/star.gif" width="18" height="18" /><img src="images/star.gif" width="18" height="18" />
+     <div class="intro_left"><{$hotel.hotel_name}>（<{$hotel.hotel_enname}>）<{$star|str_repeat:$hotel.hotel_star}>
      <p><{$hotel.hotel_description}></p>
    </div>
    <div class="intro_right">
@@ -251,5 +252,5 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
 </div>
 <!--结束首页酒店信息-->
 </div>
-<input type="hidden" id="module_url" value="<{$module_url}>">
+<input type="hidden" id="module_url" value="<{$module_url}>"><input type="hidden" id="check_in_date" value="<{$smarty.get.check_in_date}>"><input type="hidden" id="check_out_date" value="<{$smarty.get.check_out_date}>">
 <div style='border: medium none;background-color: rgb(102, 102, 102); position:absolute;visibility:visible; z-index:1;opacity: 0.6; left:0px;top: 0px;width:100%; height: 1682px; z-index:15;display:none;' class='mapbig'><div style="height:24px; text-align:center; width:54px; line-height:24px; color:#FF0000; text-decoration:underline; z-index:102; background:#FFFFFF; border:#000000 1px solid; cursor:pointer;">关闭</div></div><div id='mapbig' class="mapbig" style='top:80px; z-index:101;position: absolute;display:none;'></div>

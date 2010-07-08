@@ -7,8 +7,8 @@
 	<{/foreach}>
 	</p>
 	<ul>
-	<li>入住日期：<input type="text" class="inputbox checkdate" id="checkdate1" name="CheckDate[]" value="<{$smarty.get.CheckDate.0}>"/></li>
-	<li>退房日期：<input type="text" class="inputbox checkdate" id="checkdate2" name="CheckDate[]" value="<{$smarty.get.CheckDate.1}>"/></li>
+	<li>入住日期：<input type="text" class="inputbox checkdate requied" title="入住日期" id="checkdate1" name="CheckDate[]" value="<{$smarty.get.CheckDate.0}>"/></li>
+	<li>退房日期：<input type="text" class="inputbox checkdate requied" title="退房日期" id="checkdate2" name="CheckDate[]" value="<{$smarty.get.CheckDate.1}>"/></li>
 	<li>价格范围：<input type="text" name="price[]" size="3" value="<{$smarty.get.price.0}>"/>-<input type="text" name="price[]" size="3" value="<{$smarty.get.price.1}>"/></li>
 	<li>酒店位置：<input type="text" class="inputbox" name="HotelAddress" value="<{$smarty.get.HotelAddress}>"/></li>
 	<li style="width:100%">酒店名称：<input type="text" style="width:160px;" class="inputbox" name="HotelName" value="<{$smarty.get.HotelName}>"/></li>
@@ -20,7 +20,7 @@
 		<{/foreach}>
 	</p>
 	</div>
-	<div class="searchbutton"><input type="submit" value="酒店查询" style="margin-left:10px;" class="button"/><input type="submit" value="人工查询" style="margin-left:10px;" class="button"/></div>
+	<div class="searchbutton"><input type="button" value="酒店查询" style="margin-left:10px;" class="button" onclick="SearchSub(this)"/><input type="button" value="人工查询" style="margin-left:10px;" class="button"/></div>
   </div>
 </form>
 <div id=con>

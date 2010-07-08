@@ -87,3 +87,18 @@ function book(even,hotel_id,room_id,isFind)
 	var book_url = module_url + 'book.php?hotel_id=' + hotel_id + '&room_id=' + room_id + '&check_in_date=' + check_in_date + '&check_out_date=' + check_out_date + '&isFind=' + isFind;
 	window.location.href = book_url;
 }
+
+function SearchSub(even)
+{
+	var _sub = true;var _errStr = '';var id = '';
+	jQuery("#Search .requied").each(function(i){
+		if(jQuery(this).val() == '')
+		{
+			if(id == '') id = jQuery(this).attr("id");_errStr += (jQuery(this).attr("title")+' 必填\n');_sub = false;
+		}
+	});
+	if(_sub)
+		jQuery("#Search").submit();
+	else
+		alert(_errStr);jQuery("#"+id).focus();
+}
