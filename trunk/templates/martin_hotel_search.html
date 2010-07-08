@@ -25,12 +25,13 @@ function showHotel(ele,class){
 		jQuery(ele).text("全部房型 ▲");jQuery("." + class).show();jQuery("." + class).addClass('show');
 	}
 }
-function ShowMap(Lat,Lng,hotel_name,message)
+function ShowMap(even,Lat,Lng,hotel_name)
 {
 	//jQuery("#lat").val(Lat);jQuery("#lng").val(Lng);
 	//var lat = Lat;var lng = Lng;
 	var ImgStr = '';
 	var hotel_name = [hotel_name];
+	var message = jQuery(even).parents("div .topright").find("p").next("p").text();
 	var message = [message];
 	jQuery("#mapbig").css('left',left_width +'px');
 	jQuery(".mapbig").show();
@@ -86,7 +87,7 @@ function GetRoom(ele)
 	<div class="listclass">
 		<div class="listtop"><div class="topleft"><img src="<{$module_url}>img.php?id=<{$hotel.hotel_icon}>&w=70&h=70" title="<{$hotel.hotel_name}>"/></div>
 			<div class="topright">
-				<p class="title"><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}><{if $check_in_date_count}><{$check_date_str}><{/if}>"><{$hotel.hotel_name}></a>
+				<p class="title"><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}><{if $check_in_date_count}><{$check_date_str}><{/if}>"><{$hotel.hotel_name}></a>（<{$hotel.hotel_enname}>）
 				<{$star|str_repeat:$hotel.hotel_star}>
 				</p>
 				<p><{$hotel.hotel_description}></p>
@@ -97,7 +98,7 @@ function GetRoom(ele)
 					<td width="15%"><img src="<{$module_url}>images/icon_01.gif" width="18" height="18" />商圈：</td>
 					<td width="30%"><{$hotel.city_name}></td>
 					<td width="15%"><img src="<{$module_url}>images/icon_02.gif" width="18" height="18" />地图：</td>
-					<td width="15%"><img align="left" src="<{$module_url}>images/pop_map_btn.gif" style="cursor: pointer;margin-top: 5px;" title="查看大地图" onclick="ShowMap('<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>','<{$hotel.hotel_description}>')"></td>
+					<td width="15%"><img align="left" src="<{$module_url}>images/pop_map_btn.gif" style="cursor: pointer;margin-top: 5px;" title="查看大地图" onclick="ShowMap(this,'<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>')"></td>
 				</tr>
 <!--				<tr>
 					<td>开业时间：</td>
