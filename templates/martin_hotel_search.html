@@ -36,6 +36,7 @@ function ShowMap(even,Lat,Lng,hotel_name)
 	var message = [message];
 	jQuery("#mapbig").css('left',left_width +'px');
 	jQuery(".mapbig").show();
+	jQuery("#mapClose").css('left',left_width + <{$google_w_h.0}> - 5 +'px');jQuery("#mapClose").show();
 	initialize('mapbig',<{$google_w_h.0}>,<{$google_w_h.1}>,true,Lat,Lng,hotel_name,message,ImgStr);
 }
 function showPrice(ele)
@@ -158,5 +159,6 @@ function showPrice(ele)
 <div class="hotel"><{$martin_hotel_search_left}></div>
 </div>
 <input type="hidden" id="lat" value=""><input type="hidden" id="lng" value="">
-<div style='border: medium none;background-color: rgb(102, 102, 102); position:absolute;visibility:visible; z-index:1;opacity: 0.6; left:0px;top: 0px;width:100%; height: 1682px; z-index:15;display:none;' class='mapbig'></div><div id='mapbig' class="mapbig" style='top:80px; z-index:101;position: absolute;display:none;'></div>
+<div style='border: medium none;background-color: rgb(102, 102, 102); position:absolute;visibility:visible; z-index:1;opacity: 0.6; left:0px;top: 0px;width:100%; height: 1682px; z-index:15;display:none;' class='mapbig'>
+</div><img id="mapClose" class="mapbig" title="关闭地图" src="<{$xoops_url}>/js/jquery.fancybox/fancy_closebox.png" style="top: 55px; z-index: 101; position: absolute;cursor: pointer;display:none;"><div id='mapbig' class="mapbig" style='top:80px; z-index:101;position: absolute;display:none;'></div>
 <!--结束主体--!>

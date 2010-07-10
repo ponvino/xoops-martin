@@ -20,6 +20,8 @@ if (!defined('XOOPS_ROOT_PATH')){ exit(); }
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('martin_adminMenu'))
+{
 function martin_adminMenu ($currentoption = 0, $breadcrumb = '' ) 
 {
 	include_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -50,6 +52,7 @@ function martin_adminMenu ($currentoption = 0, $breadcrumb = '' )
 	$tpl->display( 'db:martin_admin_menu.html' );
 	echo "<br />\n";
 }
+}
 
 /**
  * @用于区块
@@ -59,6 +62,8 @@ function martin_adminMenu ($currentoption = 0, $breadcrumb = '' )
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('martin_collapsableBar'))
+{
 function martin_collapsableBar($tablename = '', $iconname = '', $tabletitle = '', $tabledsc='')
 {
 
@@ -72,6 +77,7 @@ function martin_collapsableBar($tablename = '', $iconname = '', $tabletitle = ''
 		echo "<span style=\"color: #567; margin: 3px 0 12px 0; font-size: small; display: block; \">" . $tabledsc . "</span>";
 	}
 }
+}
 
 /**
  * @创建button
@@ -81,6 +87,8 @@ function martin_collapsableBar($tablename = '', $iconname = '', $tabletitle = ''
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('Create_button'))
+{
 function Create_button($ButtonArr)
 {
 	if(!is_array($ButtonArr)) return '';
@@ -93,7 +101,10 @@ function Create_button($ButtonArr)
 	}
 	echo '</div>';
 }
+}
 
+if(!function_exists('martin_close_collapsable'))
+{
 function martin_close_collapsable($name, $icon)
 {
 	?>
@@ -132,6 +143,7 @@ function martin_close_collapsable($name, $icon)
 	</script>
 	<?php
 }
+}
 
 /**
  * @get order js
@@ -140,6 +152,8 @@ function martin_close_collapsable($name, $icon)
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('martin_order_list_js'))
+{
 function martin_order_list_js()
 {
 	echo <<<EndHTML
@@ -176,6 +190,7 @@ function martin_order_list_js()
 	</script>
 EndHTML;
 }
+}
 
 /**
  * @method: 得到酒店星级 
@@ -184,6 +199,8 @@ EndHTML;
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  **/
+if(!function_exists('GetRanks'))
+{
 function GetRanks(&$xoopsModuleConfig)
 {
 	$HotelRanks = $xoopsModuleConfig['hotelrank'];
@@ -199,6 +216,7 @@ function GetRanks(&$xoopsModuleConfig)
 	}
 	return $Ranks;
 }
+}
 
 /**
  * @method delete path files 
@@ -207,6 +225,8 @@ function GetRanks(&$xoopsModuleConfig)
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('deldir'))
+{
 function deldir($dir) {
 	$dh = opendir($dir);
 	while ($file = readdir($dh))
@@ -229,7 +249,8 @@ function deldir($dir) {
 	} else {
 		return false;
 	}*/
-} 
+}
+}
 
 /**
  * @get module config array
@@ -238,6 +259,8 @@ function deldir($dir) {
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('getModuleArray'))
+{
 function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $selected = null)
 {
 	global $xoopsModuleConfig;
@@ -270,6 +293,7 @@ function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $s
 	}
 	return $module_key;
 }
+}
 
 /**
  * @write html select 
@@ -279,6 +303,8 @@ function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $s
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('WriteHtmlSelect'))
+{
 function WriteHtmlSelect($ModuleArr , $keyName ,$selected = null)
 {
 	if(empty($keyName)) return $keyName ;
@@ -296,6 +322,7 @@ function WriteHtmlSelect($ModuleArr , $keyName ,$selected = null)
 	$Str .= "</select>";
 	return $Str;
 }
+}
 
 /**
  * @get mouth last day
@@ -304,6 +331,8 @@ function WriteHtmlSelect($ModuleArr , $keyName ,$selected = null)
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('MouthLastDay'))
+{
 function MouthLastDay($mouth = null)
 {
 	$mouth = is_null($mouth) ? date('m') : $mouth; 
@@ -315,6 +344,7 @@ function MouthLastDay($mouth = null)
 	$lastday = (int)$lastday[0];
 	return $lastday;
 }
+}
 
 /**
  * @get check in date arr 
@@ -323,6 +353,8 @@ function MouthLastDay($mouth = null)
  * @copyright 1997-2010 The Martin Group
  * @author Martin <china.codehome@gmail.com> 
  * */
+if(!function_exists('GetCheckDateArr'))
+{
 function GetCheckDateArr($check_in_date,$check_out_date)
 {
 	$check_arr = array();
@@ -344,6 +376,7 @@ function GetCheckDateArr($check_in_date,$check_out_date)
 		}
 	}
 	return $check_arr;
+}
 }
 
 
