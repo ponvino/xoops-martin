@@ -212,6 +212,13 @@ $modversion['config'][$i]['description'] = 'MARTIN_LINE_PAY_DESCRIPTION';
 $modversion['config'][$i]['formtype'] = 'textarea';
 $modversion['config'][$i]['valuetype'] = 'text';
 $modversion['config'][$i]['default'] = '';
+$i++;
+$modversion['config'][$i]['name'] = 'google_width_height';
+$modversion['config'][$i]['title'] = 'MARTIN_GOOGLE_WIDTH_HEIGHT';
+$modversion['config'][$i]['formtype'] = 'text';
+$modversion['config'][$i]['valuetype'] = 'text';
+$modversion['config'][$i]['default'] = '750|400';
+
 
 
 ?>

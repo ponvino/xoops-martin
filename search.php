@@ -86,6 +86,7 @@ $xoopsTpl -> assign('order',$order);
 $xoopsTpl -> assign('this_by',$by == 'DESC' ? 'asc' : 'desc');
 $xoopsTpl -> assign('check_date_str',"?check_in_date={$check_date[0]}&amp;check_out_date={$check_date[1]}");
 $xoopsTpl -> assign("googleApi", $xoopsModuleConfig['google_api']);
+$xoopsTpl -> assign("google_w_h", array_filter(explode("|",$xoopsModuleConfig['google_width_height'])));
 
 include XOOPS_ROOT_PATH.'/footer.php';
 ?>
