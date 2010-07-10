@@ -1,8 +1,18 @@
 <?php
 global $xoopsModuleConfig,$xoopsModule,$xoopsTpl,$hotel_handler;
 
+$isNewsModule = false;
+//新闻
+if($xoopsModule->dirname() != 'martin')
+{
+	if(!is_array($aliasurl))$isNewsModule = true;
+	$xoopsModule =& $module_handler->getByDirname('martin');
+	$xoopsModuleConfig =& $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));	
+}
+
+
 include_once XOOPS_ROOT_PATH.'/modules/martin/include/functions.php';
-//$hotel_handler =& xoops_getmodulehandler("hotel", 'martin');
+if(empty($hotel_handler)) $hotel_handler =& xoops_getmodulehandler("hotel", 'martin') ;
 //$room_handler =& xoops_getmodulehandler("room", 'martin');
 //$promotion_handler =& xoops_getmodulehandler("hotelpromotion", 'martin');
 //$service_handler =& xoops_getmodulehandler("hotelservice", 'martin');
@@ -44,6 +54,7 @@ $Tpl -> assign('hotel_guide_rows',$hotel_guide_rows);
 $Tpl -> assign('hotel_today_special_rows',$hotel_today_special_rows);
 $Tpl -> assign('cityList',$hotel_handler->GetCityList('WHERE city_parentid = 0'));
 $Tpl -> assign('hotel_static_prefix',$xoopsModuleConfig['hotel_static_prefix']);
+$Tpl -> assign('isNewsModule',$isNewsModule);
 $Tpl->display('db:martin_hotel_search_left.html');
 $xoopsTpl -> assign('martin_hotel_search_left',ob_get_contents());
 

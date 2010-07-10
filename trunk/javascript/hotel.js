@@ -1,5 +1,8 @@
 //<![CDATA[
 //得到坐标
+jQuery(function(){
+	jQuery("#mapClose").click(function(){jQuery(".mapbig").hide();});
+})
 function selectTag(showContent,selfObj){
 	// 操作标签
 	var tag = document.getElementById("tags").getElementsByTagName("li");
@@ -31,7 +34,7 @@ function initialize(id,width,height,showclose,lat,lng,hotel_name,message,ImgStr)
 		});
 		map.addOverlay(marker);
 		//锚点
-		if(showclose) map.addControl(new TextualZoomControl());
+		//if(showclose) map.addControl(new TextualZoomControl());
 	}
 }
 //alert(screen.height);

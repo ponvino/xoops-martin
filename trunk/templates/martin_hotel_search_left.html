@@ -69,7 +69,7 @@
 </div>
 </div>
 </div>
-<div class="specials">
+<{if !$isNewsModule}><div class="specials">
   <h2>酒店星级</h2>
   <div class="detailed">
     <ul>
@@ -78,28 +78,28 @@
 	<{/foreach}>
     </ul>
   </div>
-  </div>
-  <div class="specials">
-  <h2>最近浏览酒店</h2>
-  <div class="detailed">
-    <ul>
-	<{foreach from=$ViewedHotels item=hotel}>
-	  <li><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}>" title="<{$hotel.hotel_name}>"><{$hotel.hotel_name}></a></li>
-	<{/foreach}>
-    </ul>
-  </div>
-  </div>
-  <div class="specials">
-  <h2>图标说明</h2>
-  <div class="detailed">
-    <ul>
-	  <p>酒店星级</p>
-	  <p>港捷旅用户评级[详细信息]</p>
-	  <p>通过港捷旅预订该酒店，在入住时即可享受该酒店提供的额外优惠。</p>
-	  <p>港捷旅金牌推荐酒店</p>
-	  <p>港捷旅银牌推荐酒店</p>
-	  <p>会员价 ***，具体价格必须登录后才能显示。</p>
-	  <p>如你在旅途中遇见的酒店尚未收录在港捷旅的酒店列表中，请推荐。</p>
-	</ul>
-  </div>
-  </div>
+</div>
+<div class="specials">
+<h2>最近浏览酒店</h2>
+<div class="detailed">
+<ul>
+<{foreach from=$ViewedHotels item=hotel}>
+	<li><a href="<{$xoops_url}>/hotel-<{$hotel.hotel_alias}><{$hotel_static_prefix}>" title="<{$hotel.hotel_name}>"><{$hotel.hotel_name}></a></li>
+<{/foreach}>
+</ul>
+</div>
+</div>
+<div class="specials">
+<h2>图标说明</h2>
+<div class="detailed">
+<ul>
+	<p>酒店星级</p>
+	<p>港捷旅用户评级[详细信息]</p>
+	<p>通过港捷旅预订该酒店，在入住时即可享受该酒店提供的额外优惠。</p>
+	<p>港捷旅金牌推荐酒店</p>
+	<p>港捷旅银牌推荐酒店</p>
+	<p>会员价 ***，具体价格必须登录后才能显示。</p>
+	<p>如你在旅途中遇见的酒店尚未收录在港捷旅的酒店列表中，请推荐。</p>
+</ul>
+</div>
+</div><{/if}>
