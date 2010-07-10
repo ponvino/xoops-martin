@@ -16,7 +16,8 @@ jQuery(document).ready(function($){
 		else
 			$("#datepick-div").hide();
 	});
-	$('.rela').hover(function(){$(this).find(".abso").show();},function(){$(this).find(".abso").hide();});
+	$('.rela').hover(function(){$('.abso').each(function(){$(this).hide();});$(this).find(".abso").show();});
+	$('.abso').hover(function(){},function(){$(this).hide();});
 });
 function showHotel(ele,class){
 	if(jQuery("." + class).hasClass('show')){
