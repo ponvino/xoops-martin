@@ -686,6 +686,7 @@ class MartinRoomHandler extends XoopsObjectHandler
 
 	/**
 	 * @get hotel room
+	 * @计算平均值
 	 * @license http://www.blags.org/
 	 * @created:2010年06月14日 20时47分
 	 * @copyright 1997-2010 The Martin Group
@@ -697,18 +698,44 @@ class MartinRoomHandler extends XoopsObjectHandler
 		global $xoopsDB;
 		$time = strtotime(date('Y-m-d'));
 		$RoomBedTypeList = getModuleArray('room_bed_type','order_type',true);
-		$sql = "SELECT r.*,rt.room_type_info,rp.* FROM {$xoopsDB->prefix("martin_room")} r 
-			INNER JOIN {$xoopsDB->prefix("martin_room_type")} rt ON (rt.room_type_id = r.room_type_id)
-			INNER JOIN {$xoopsDB->prefix("martin_room_price")} rp ON (r.room_id = rp.room_id)
-			WHERE rp.room_date = $time AND r.hotel_id = $hotel_id AND r.room_status = 1 
-			GROUP BY r.room_id ORDER BY r.room_sented_coupon DESC , r.room_id DESC ";
+		$sql = "SELECT r.*,rt.room_type_info,rp.*,
+			GROUP_CONCAT(rp.room_price) as room_prices,GROUP_CONCAT(rp.room_date) as room_dates ,
+			GROUP_CONCAT(rp.room_sented_coupon) as room_sented_coupons
+			FROM {$xoopsDB->prefix("martin_room")} r 
+			INNER JOIN {$xoopsDB->prefix("martin_room_type")} rt ON (rt.room_type_id = r.room_type_id) ";
+		$sql .= "INNER JOIN {$xoopsDB->prefix("martin_room_price")} rp ON (r.room_id = rp.room_id) WHERE ";
+		$sql .= $this->check_date ? "rp.room_date BETWEEN {$this->check_date[0]} AND {$this->check_date[1]} " : "rp.room_date = $time ";
+		$sql .= "AND r.hotel_id = $hotel_id AND r.room_status = 1 GROUP BY r.room_id ORDER BY r.room_sented_coupon DESC , r.room_id DESC ";
 		//echo $sql;
 		$rows = array();
 		$result = $xoopsDB->query($sql);
 		while($row = $xoopsDB->fetchArray($result))
 		{
+			$room_dates = array();$room_all_price = 0;$room_all_sended_coupon = 0;
+			$row['room_prices'] = explode(",",$row['room_prices']);
+			$row['room_dates'] = explode(",",$row['room_dates']);
+			$row['room_sented_coupons'] = explode(",",$row['room_sented_coupons']);
+			foreach($row['room_prices'] as $key => $room_price)
+			{
+				$d = $row['room_dates'][$key];
+				$room_sented_coupon = $row['room_sented_coupons'][$key];
+				if($d >= $this->check_date[0] && $d < $this->check_date[1]) 
+				{
+					$room_all_price += $room_price;
+					$room_all_sended_coupon += $room_sented_coupon;
+					$room_prices[] = array('date'=>date('Y-m-d',$d),'price'=>$room_price);
+				}
+			}
+			unset($row['room_prices'],$row['room_dates'],$row['room_sented_coupons']);
+			$row['room_prices'] = $room_prices;
+			if($this->check_date) 
+			{
+				$row['room_price'] = round(($room_all_price/$key),2);
+				$row['room_sented_coupon'] = round(($room_all_sended_coupon/$key),2);
+			}
 			$row['room_bed_type'] = $RoomBedTypeList[$row['room_bed_type']];
 			$rows[] = $row;
+			unset($row,$room_prices);
 		}
 		return $rows;	
 	}

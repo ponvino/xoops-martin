@@ -30,9 +30,9 @@ jQuery(document).ready(function($){
 	});
 	$("#big").click(function(){
 		var window_width = screen.width;
-		var left_width = Number(window_width - 500)/2;
+		var left_width = Number(window_width - <{$google_w_h.0}>)/2;
 		$("#mapbig").css('left',left_width +'px');
-		$(".mapbig").show();initialize('mapbig',500,500,true,lat,lng,hotel_name,message,ImgStr);
+		$(".mapbig").show();initialize('mapbig',<{$google_w_h.0}>,<{$google_w_h.1}>,true,lat,lng,hotel_name,message,ImgStr);
 	});
 	var ii = 0;
 	$(".small").each(function(i){
@@ -84,12 +84,13 @@ jQuery(document).ready(function($){
 				$(this).hide();
 		});
 	});
+	$('.rela').hover(function(){$(this).find(".abso").show();},function(){$(this).find(".abso").hide();});
 	//$("#bigclose").click(function(){$(".mapbig").hide();});
 });
 var width = 200;
 var height = 189;
 var hotel_id = <{$hotel_id}>;
-window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_name,message,ImgStr);};
+//window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_name,message,ImgStr);};
 //Event.observe(window, "load",initialize);
 //google.setOnLoadCallback(initialize);
 </script>
@@ -108,7 +109,7 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
      <p><{$hotel.hotel_description}></p>
    </div>
    <div class="intro_right">
-   <div id="gmap"></div>
+   <div id="gmap"><img src="http://ditu.google.cn/staticmap?center=<{$hotel.hotel_google.0}>,<{$hotel.hotel_google.1}>&zoom=14&size=200x189&hl=zh-cn&maptype=mobile&markers=<{$hotel.hotel_google.0}>,<{$hotel.hotel_google.1}>,reds&key=<{$googleApi}>&sensor=false" width="200" height="189" title="<{$hotel.hotel_name}>（<{$hotel.hotel_enname}>）"></div>
    <div align="right" style="background:url(/modules/martin/images/pop_map_btn.gif) no-repeat scroll right center transparent; cursor: pointer;margin-top: 5px;" title="查看大地图" id="big">放大&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
    </div>
    </div>
@@ -117,7 +118,7 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
 	   <div class="listtop">
 	   <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td width="12%">行政区：</td>
+    <td width="12%">行&nbsp;&nbsp;政&nbsp;&nbsp;区：</td>
     <td colspan="3"><{$hotel.hotel_city}></td>
     <td width="45%" rowspan="6" valign="top" align="right" style="border:0;"><div class="imgshow">
 	    <div class="image"><a class="light" rel="group" title="<{$hotel.hotel_image.0.alt}>" href="<{$module_url}>i.php?id=<{$hotel.hotel_image.0.filename}>"><img src="<{$module_url}>img.php?id=<{$hotel.hotel_image.0.filename}>&w=250&h=154" width="250" height="154" title="<{$hotel.hotel_image.0.alt}>"/></a></div>
@@ -136,7 +137,7 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
 	  </div>	</td>
   </tr>
    <tr>
-    <td>商圈：</td>
+    <td>商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;圈：</td>
     <td colspan="3"><{$hotel.city_name}></td>
     </tr>
   <tr>
@@ -154,7 +155,7 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
     <td width="15%"></td>
   </tr>
   <tr>
-    <td>地址：</td>
+    <td>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</td>
     <td colspan="3"><{$hotel.hotel_address}></td>
     </tr>
 </table>
@@ -172,24 +173,36 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
    </div>
    <div class="hotellist">
    <div class="hoteltitle bookingtitle">
-		 <div class="lefttitle">房型与房价</div>   
+		 <div class="lefttitle">房型与房价</div>
 	    </div>
      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="dtable">
        <tr align="center" class="fwt">
          <td width="21%">房型</td>
          <td width="9%">床型</td>
-         <td width="14%">直接预订价</td>
-         <td width="12%"><p>直接预订<br />
-送现金券</p></td>
+         <td width="14%">均价</td>
+         <td width="12%"><p>直接预订<br />送现金券</p></td>
          <td width="12%">直接预定</td>
          <td width="18%">查询预订参考价</td>
          <td width="14%">查询预定</td>
        </tr>
 <{foreach from=$hotel.room item=room}>
        <tr align="center">
-         <td width="21%"><{$room.room_type_info}></td>
+         <td width="21%"><div class="rela"><a href="javascript:void(0);" ><{$room.room_type_info}></a>
+	<div class="abso" style="display:none;">
+		<table width="500" border="0" cellspacing="0" cellpadding="0">	<tr><td>面积：<{$room.room_area}>㎡</td><td>楼层：<{$room.room_floor}></td><td>房型：<{$room.room_type_info}></td></tr>
+		<tr><td>介绍：<{$room.room_bed_info}></td></tr>
+		</table>
+	</div></div></td>
          <td width="9%"><{$room.room_bed_type}></td>
-         <td width="14%">￥<{$room.room_price}></td>
+         <td width="14%"><div class="rela"><a onclick="showPrice(this);" style="cursor:pointer;text-decoration:none;">￥ <{$room.room_price}></a>
+	<{if $smarty.get.check_in_date}><div class="abso" style="display:none;">
+			<table width="300" border="0" cellspacing="0" cellpadding="0">
+			<tr><{foreach from=$room.room_prices item=price}><td><{$price.date}></td><{/foreach}></tr>
+			<tr><{foreach from=$room.room_prices item=price}><td><{$price.price}></td><{/foreach}></tr>
+			</table>
+		</div><{/if}>
+	</div>
+	</td>
          <td width="12%">￥<{$room.room_sented_coupon}></td>
          <td width="12%"><img src="<{$module_url}>images/btn_01.gif" title="直接预订" border="0" style="cursor:pointer;" onClick="book(this,<{$hotel_id}>,<{$room.room_id}>,false);" class="book"></td>
          <td width="18%">￥<{$room.room_advisory_range_small}>-<{$room.room_advisory_range_max}></td>
@@ -198,15 +211,15 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
 <{/foreach}>
      </table>
    </div>
-   <div class="hotellist"><div class="hoteltitle bookingtitle">
+<{if $hotel.hotel_facility}>   <div class="hotellist"><div class="hoteltitle bookingtitle">
 	<div class="lefttitle">酒店设施与服务</div></div>
 	<div class="listclass"><{$hotel.hotel_facility}></div>
-   </div>
-   <div class="hotellist"><div class="hoteltitle bookingtitle">
+   </div><{/if}>
+<{if $hotel.hotel_environment}>   <div class="hotellist"><div class="hoteltitle bookingtitle">
 	<div class="lefttitle">酒店提醒</div></div>
 	<div class="listclass"><{$hotel.hotel_environment}></div>
-   </div>
-   <div class="hotellist">
+   </div><{/if}>
+<{if $hotel.service}>   <div class="hotellist">
    <div class="hoteltitle bookingtitle">
 	<div class="lefttitle">增值服务</div>
    </div>
@@ -228,20 +241,20 @@ window.onload = function(){initialize('gmap',width,height,false,lat,lng,hotel_na
          </tr>
 <{/foreach}>
      </table>
-   </div>
-   <div class="hotellist">
+   </div><{/if}>
+<{if $hotel.promotion.promotion_description}>   <div class="hotellist">
    <div class="hoteltitle bookingtitle">
 		 <div class="lefttitle">赠送服务</div>
    </div>
 		<div class="listclass"><{$hotel.promotion.promotion_description}></div>
-   </div>
-   <div class="hotellist">
+   </div><{/if}>
+<{if $hotel.hotel_reminded}>   <div class="hotellist">
    <div class="hoteltitle bookingtitle">
 		 <div class="lefttitle">酒店特别提示</div>
 	    </div>
 		<div class="listclass"><{$hotel.hotel_reminded}></div>
    </div>
-	 </div>
+   </div><{/if}>
    <div class="hoteltitle">
    </div>
    </div>

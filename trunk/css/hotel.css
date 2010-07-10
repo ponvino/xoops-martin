@@ -15,7 +15,7 @@ font-size:12px;
 .ovflow{overflow:hidden;}
 
 
-a { color:#000000;}
+a { color:#3F7E15;text-decoration:none;}
 a:{ color:#3F7E15; text-decoration:none;}
 a:hover{ color:#3F7E15; text-decoration:underline;}
 
@@ -710,7 +710,13 @@ line-height:13px;
 color:#FF0000;
 }
 /*结束左边主体*/
-
+.rela {position:relative;}
+.rela .abso {position:absolute; left:15px; top:20px;}
+.rela .abso table{border:#FF6600 2px solid; background:#FFFFFF}
+.rela .abso table td{ height:26px; width:40px; border-bottom:#CCCCCC 1px dotted; text-align:center}
+.caplist { overflow:hidden;}
+.caplist ul{ overflow:hidden;}
+.caplist li{ width:30%; float:left; text-align:left; line-height:24px;}
 
 /*会员管理*/
 .panel {
