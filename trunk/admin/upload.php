@@ -25,6 +25,10 @@
 
 	$file_id = md5($_FILES["Filedata"]["tmp_name"] + rand()*100000);
 
+	if(!is_dir('../images/hotel/tmp/'))
+	{
+		mkdir('../images/hotel/tmp/',0777);
+	}
 	//upload to tmp files
 	//move_uploaded_file($_FILES["Filedata"]["tmp_name"], "../images/hotel/tmp/" . $file_id . '.' . $FileType );
 	copy($_FILES["Filedata"]["tmp_name"], "../images/hotel/tmp/" . $file_id . '.' . $FileType );
