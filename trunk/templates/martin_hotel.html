@@ -84,7 +84,8 @@ jQuery(document).ready(function($){
 				$(this).hide();
 		});
 	});
-	$('.rela').hover(function(){$(this).find(".abso").show();},function(){$(this).find(".abso").hide();});
+	$('.rela').hover(function(){$('.abso').each(function(){$(this).hide();});$(this).find(".abso").show();});
+	$('.abso').hover(function(){},function(){$(this).hide();});
 	//$("#bigclose").click(function(){$(".mapbig").hide();});
 });
 var width = 200;
