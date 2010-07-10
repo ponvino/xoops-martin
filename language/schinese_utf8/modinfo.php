@@ -45,6 +45,7 @@ define("MARTIN_ONLINE_PAY","在线支付方式");
 define("MARTIN_ONLINE_PAY_DESCRIPTION","在线支付方式，请按照规则输入");
 define("MARTIN_LINE_PAY","线下支付方式");
 define("MARTIN_LINE_PAY_DESCRIPTION","推荐酒店，顺序按照您输入的，请按照规则输入");
+define("MARTIN_GOOGLE_WIDTH_HEIGHT","google map  显示 width,height，请按照规则输入");
 
 
 ?>
