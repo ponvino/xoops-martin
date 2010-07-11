@@ -37,6 +37,7 @@ $modversion["adminindex"] = "admin/index.php";
 $modversion["adminmenu"] = "admin/menu.php";
 
 //blocks
+$modversion["blocks"] = array();
 $i = 0;
 $i++;
 $modversion['blocks'][$i]['file'] = "martin.hotel.php";
@@ -45,7 +46,7 @@ $modversion['blocks'][$i]['description'] = "hotel Search";
 $modversion['blocks'][$i]['show_func'] = "martin_hotel_search_show";
 $modversion['blocks'][$i]['edit_func'] = "martin_hotel_search_edit";
 $modversion['blocks'][$i]['options'] = "";
-$modversion['blocks'][$i]['template'] = "martin.block.hotel.search.html";
+$modversion['blocks'][$i]['template'] = "martin_block_hotel.html";
 
 //blocks
 
