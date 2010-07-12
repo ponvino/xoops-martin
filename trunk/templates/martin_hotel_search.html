@@ -52,7 +52,7 @@ function showPrice(ele)
 <{assign var=star value='images/star.gif'}>
 <{assign var=star value="<img src='$module_url$star'>"}>
 <{assign var=order_str value="images/$by.gif"}>
-<{assign var=order_str value="<img src='$module_url$order_str'>"}>
+<{assign var=order_str value="<img src='$module_url$order_str' style='margin-top:5px; margin-right:3px;'>"}>
 <div class="breadcrums"><span>您所在的位置：</span>首页</div>
 <!--结束面包线-->
 <div class="blocknh">
@@ -72,7 +72,7 @@ function showPrice(ele)
 		<li class="titleleft"><img src="<{$module_url}>images/u_n.gif" width="12" height="16" style="float:left; padding:3px 3px 0 0;" />排序方式:</li>
 		<li><a href="<{$this_url}>&amp;Order=room_price&amp;By=<{$this_by}>">价格 <{if $order eq "room_price"}><{$order_str}><{/if}></a></li>
 		<li><a href="<{$this_url}>&amp;Order=hotel_star&amp;By=<{$this_by}>">酒店星级 <{if $order eq "hotel_star"}><{$order_str}><{/if}></a></li>
-		<li><a href="<{$this_url}>&amp;Order=room_is_totay_special&amp;By=<{$this_by}>">今日特价 <{if $order eq "room_is_totay_special"}><{$order_str}><{/if}></a></li>
+		<li><a href="<{$this_url}>&amp;Order=room_is_totay_special&amp;By=<{$this_by}>">今日特价<{if $order eq "room_is_totay_special"}><{$order_str}><{/if}></a></li>
 		<li>共<{$count}>家酒店</li>
 	 </ul>
 	 </div>
@@ -90,8 +90,8 @@ function showPrice(ele)
 					<td width="14%"><{$hotel.hotel_city}></td>
 					<td width="13%"><img src="<{$module_url}>images/icon_01.gif" style="float:left; margin-top:5px; margin-right:3px;" width="18" height="18" />商圈：</td>
 					<td width="23%"><{$hotel.city_name}></td>
-					<td width="13%"><img src="<{$module_url}>images/icon_02.gif" width="18" style="float:left; margin-top:5px; margin-right:3px;" height="18" />地图：</td>
-					<td width="17%"><img align="left" src="<{$module_url}>images/pop_map_btn.gif" style="cursor: pointer;" title="查看大地图" onclick="ShowMap(this,'<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>')"></td>
+					<td width="9%">地图：</td>
+					<td width="21%"><img align="left" src="<{$module_url}>images/icon_02.gif" style="cursor: pointer;" title="查看大地图" onclick="ShowMap(this,'<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>')"></td>
 				</tr>
 				</table>
 				</p>
@@ -105,7 +105,7 @@ function showPrice(ele)
 				<td width="10%">均价</td>
 				<td width="12%"><p>直接预订<br />	送现金券</p></td>
 				<td width="12%">直接预订</td>
-				<td width="23%">查询预订参考价<img src="<{$module_url}>images/tejia.gif" width="18" height="18" /></td>
+				<td width="23%">查询预订参考价<img src="<{$module_url}>images/tejia.gif" style="float:right; margin-right:5px;" width="18" height="18" /></td>
 				<td width="15%">查询预订</td>
 			</tr>
 		<{foreach item=room name=room from=$rooms[$hotel.hotel_id]}>
@@ -130,7 +130,7 @@ function showPrice(ele)
 				</td>
 				<td width="12%">￥ <{$room.room_sented_coupon}></td>
 				<td width="12%"><img src="<{$module_url}>images/btn_01.gif" title="直接预订" border="0" style="cursor:pointer;" onClick="book(this,<{$hotel.hotel_id}>,<{$room.room_id}>,false);" class="book"></td>
-				<td width="17%">￥ <{$room.room_advisory_range_small}>-<{$room.room_advisory_range_max}></td>
+				<td width="17%">￥ <{$room.room_advisory_range_small}>—<{$room.room_advisory_range_max}></td>
 				<td width="15%"><img src="<{$module_url}>images/btn_02.gif" title="寻找最低价" border="0" style="cursor:pointer;" onClick="book(this,<{$hotel.hotel_id}>,<{$room.room_id}>,true);" class="book"></td>
 			</tr>
 			<{if $smarty.foreach.room.index > 2 && $smarty.foreach.room.last}><tr align="right"><th colspan="7"><a onclick="showHotel(this,'hotel<{$hotel.hotel_id}>');" style="cursor:pointer;text-decoration:none;">全部房型 ▼</a></th></tr><{/if}>
