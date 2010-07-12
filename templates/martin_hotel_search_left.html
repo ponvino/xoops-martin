@@ -14,9 +14,7 @@
 	<li style="width:100%">酒店名称：<input type="text" style="width:160px;" class="inputbox" name="HotelName" value="<{$smarty.get.HotelName}>"/></li>
 	</ul>
 	<p>星级：
-		<input name="HotelStar" type="radio" class="radio" value="0" id="HotelStar0" checked='checked'/> <label for="HotelStar0">全部</label>
-		<{foreach from=$hotelrank key=key item=rank}>
-			<input name="HotelStar" type="radio" class="radio" value="<{$key}>" id="HotelStar<{$key}>" <{if $smarty.get.HotelStar eq $key}>checked="true"<{/if}>/> <label for="HotelStar<{$key}>"><{$rank}></label>
+		<input name="HotelStar" type="radio" class="radio" value="0" id="HotelStar0" checked='checked'/> <label for="HotelStar0">全部</label><{foreach from=$hotelrank key=key item=rank}><input name="HotelStar" style="_margin:0; _padding:0;" type="radio" class="radio" value="<{$key}>" id="HotelStar<{$key}>" <{if $smarty.get.HotelStar eq $key}>checked="true"<{/if}>/> <label for="HotelStar<{$key}>"><{$rank}></label>
 		<{/foreach}>
 	</p>
 	</div>
@@ -93,11 +91,11 @@
 <h2>图标说明</h2>
 <div class="detailed">
 <ul>
-	<p>酒店星级</p>
-	<p>港捷旅用户评级[详细信息]</p>
-	<p>通过港捷旅预订该酒店，在入住时即可享受该酒店提供的额外优惠。</p>
-	<p>港捷旅金牌推荐酒店</p>
-	<p>港捷旅银牌推荐酒店</p>
+	<p><img src="<{$module_url}>images/star.gif" border="0"/>酒店星级</p>
+	<p><img src="<{$module_url}>images/diamond.gif" border="0"/>港捷旅用户评级[详细信息]</p>
+	<p><img src="<{$module_url}>images/gift.gif" border="0"/>通过港捷旅预订该酒店，入住可享受该酒店提供的额外优惠。</p>
+	<p><img src="<{$module_url}>images/medal_01.gif" border="0"/>港捷旅金牌推荐酒店</p>
+	<p><img src="<{$module_url}>images/medal_02.gif" border="0"/>港捷旅银牌推荐酒店</p>
 	<p>会员价 ***，具体价格必须登录后才能显示。</p>
 	<p>如你在旅途中遇见的酒店尚未收录在港捷旅的酒店列表中，请推荐。</p>
 </ul>
