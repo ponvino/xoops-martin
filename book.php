@@ -5,7 +5,7 @@ if(!defined('MODULE_URL')) define('MODULE_URL',XOOPS_URL . '/modules/martin/');
 
 
 //测试阶段
-xoops_redirect('http://chat.53kf.com/company.php?arg=gjlmo&style=1',1,'客户接入中....');
+redirect_header('http://chat.53kf.com/company.php?arg=gjlmo&style=1',1,'客户接入中....');
 
 $hotel_handler =& xoops_getmodulehandler("hotel", 'martin');
 $room_handler =& xoops_getmodulehandler("room", 'martin');
