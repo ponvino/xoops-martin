@@ -114,7 +114,7 @@ function showPrice(ele)
 				<div class="abso" style="display:none;">
 					<table width="500" border="0" cellspacing="0" cellpadding="0">
 					<tr><td>面积：<{$room.room_area}>㎡</td><td>楼层：<{$room.room_floor}></td><td>房型：<{$room.room_type_info}></td></tr>
-					<tr><td>介绍：<{$room.room_bed_info}></td></tr>
+					<{if $room.room_bed_info}><tr><td>介绍：<{$room.room_bed_info}></td></tr><{/if}>
 					</table>
 				</div></div>
 				</td>
