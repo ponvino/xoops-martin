@@ -588,6 +588,7 @@ border-bottom:#dddddd 1px solid;
 }
 .leftblock .hotellist .listclass .listtop{
 overflow:hidden;
+_height:100%;
 }
 .leftblock .hotellist .listclass .list_left {
 float:left; width:399px;

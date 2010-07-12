@@ -36,7 +36,7 @@ function ShowMap(even,Lat,Lng,hotel_name)
 	var message = [message];
 	jQuery("#mapbig").css('left',left_width +'px');
 	jQuery(".mapbig").show();
-	jQuery("#mapClose").css('left',left_width + <{$google_w_h.0}> - 5 +'px');jQuery("#mapClose").show();
+	jQuery("#mapClose").css('left',left_width + <{$google_w_h.0}>  + 15 +'px');jQuery("#mapClose").show();
 	initialize('mapbig',<{$google_w_h.0}>,<{$google_w_h.1}>,true,Lat,Lng,hotel_name,message,ImgStr);
 }
 function showPrice(ele)
@@ -69,7 +69,7 @@ function showPrice(ele)
 	 </div>
 	 <div class="listtitle">
 	 <ul>
-		<li class="titleleft"><img src="<{$module_url}>images/u_n.gif" width="7" height="16" style="float:left; padding:3px 3px 0 0;" />排序方式:</li>
+		<li class="titleleft"><img src="<{$module_url}>images/u_n.gif" width="12" height="16" style="float:left; padding:3px 3px 0 0;" />排序方式:</li>
 		<li><a href="<{$this_url}>&amp;Order=room_price&amp;By=<{$this_by}>">价格 <{if $order eq "room_price"}><{$order_str}><{/if}></a></li>
 		<li><a href="<{$this_url}>&amp;Order=hotel_star&amp;By=<{$this_by}>">酒店星级 <{if $order eq "hotel_star"}><{$order_str}><{/if}></a></li>
 		<li><a href="<{$this_url}>&amp;Order=room_is_totay_special&amp;By=<{$this_by}>">今日特价 <{if $order eq "room_is_totay_special"}><{$order_str}><{/if}></a></li>
@@ -86,12 +86,12 @@ function showPrice(ele)
 				<p><{$hotel.hotel_description}></p>
 				<p><table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-					<td width="10%">行政区：</td>
-					<td width="10%"><{$hotel.hotel_city}></td>
-					<td width="15%"><img src="<{$module_url}>images/icon_01.gif" width="18" height="18" />商圈：</td>
-					<td width="30%"><{$hotel.city_name}></td>
-					<td width="15%"><img src="<{$module_url}>images/icon_02.gif" width="18" height="18" />地图：</td>
-					<td width="15%"><img align="left" src="<{$module_url}>images/pop_map_btn.gif" style="cursor: pointer;margin-top: 5px;" title="查看大地图" onclick="ShowMap(this,'<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>')"></td>
+					<td width="15%"><img src="<{$module_url}>images/icon_03.gif" style="float:left; margin-top:5px; margin-right:3px;" width="18" height="18" />行政区：</td>
+					<td width="14%"><{$hotel.hotel_city}></td>
+					<td width="13%"><img src="<{$module_url}>images/icon_01.gif" style="float:left; margin-top:5px; margin-right:3px;" width="18" height="18" />商圈：</td>
+					<td width="23%"><{$hotel.city_name}></td>
+					<td width="13%"><img src="<{$module_url}>images/icon_02.gif" width="18" style="float:left; margin-top:5px; margin-right:3px;" height="18" />地图：</td>
+					<td width="17%"><img align="left" src="<{$module_url}>images/pop_map_btn.gif" style="cursor: pointer;" title="查看大地图" onclick="ShowMap(this,'<{$hotel.hotel_google.0}>','<{$hotel.hotel_google.1}>','<{$hotel.hotel_name}>')"></td>
 				</tr>
 				</table>
 				</p>
@@ -160,5 +160,5 @@ function showPrice(ele)
 </div>
 <input type="hidden" id="lat" value=""><input type="hidden" id="lng" value="">
 <div style='border: medium none;background-color: rgb(102, 102, 102); position:absolute;visibility:visible; z-index:1;opacity: 0.6; left:0px;top: 0px;width:100%; height: 1682px; z-index:15;display:none;' class='mapbig'>
-</div><img id="mapClose" class="mapbig" title="关闭地图" src="<{$xoops_url}>/js/jquery.fancybox/fancy_closebox.png" style="top: 55px; z-index: 101; position: absolute;cursor: pointer;display:none;"><div id='mapbig' class="mapbig" style='top:80px; z-index:101;position: absolute;display:none;'></div>
+</div><img id="mapClose" class="mapbig" title="关闭地图" src="<{$xoops_url}>/js/jquery.fancybox/fancy_closebox.png" style="top: 55px; z-index: 101; position: absolute;cursor: pointer;display:none;"><div id='mapbig' class="mapbig" style='top:80px; z-index:101;position: absolute;display:none;border-right: 10px solid #F0F7EB;border-bottom: 10px solid #F0F7EB;border-top: 10px solid #F0F7EB;border-left: 10px solid #F0F7EB;'></div>
 <!--结束主体--!>

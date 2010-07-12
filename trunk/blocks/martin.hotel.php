@@ -22,8 +22,10 @@ function martin_hotel_search_show($options)
 		$xoopsModule =& $module_handler->getByDirname('martin');
 		$xoopsModuleConfig =& $config_handler->getConfigsByCat(0, $xoopsModule->getVar('mid'));	
 	/*}*/
-
+	//var_dump($xoopsModuleConfig);
+	
 	include_once XOOPS_ROOT_PATH.'/modules/martin/include/functions.php';
+	$hotel_handler =& xoops_getmodulehandler("hotel", 'martin');
 	$group_handler =& xoops_getmodulehandler("group", 'martin');
 	$auction_handler =& xoops_getmodulehandler("auction", 'martin');
 	$news_handler =& xoops_getmodulehandler("hotelnews", 'martin');
@@ -48,14 +50,16 @@ function martin_hotel_search_show($options)
 	}
 
 	$block['module_url'] = XOOPS_URL.'/modules/martin/';
-	$block["hotelrank"] = getModuleArray('hotelrank','hotelrank',true);
+	$block["hotelrank"] = getModuleArray('hotelrank','hotelrank',true,null,$xoopsModuleConfig);
 	$block['groupList'] = $group_handler->GetGroupList();
 	$block['auctionList'] = $auction_handler->GetAuctionList();
 	$block['hotel_guide_rows']  = $hotel_guide_rows;
 	$block['hotel_today_special_rows'] = $hotel_today_special_rows;
+	$block['cityList'] = $hotel_handler->GetCityList('WHERE city_parentid = 0');
 	$block['hotel_static_prefix'] = $xoopsModuleConfig['hotel_static_prefix'];
 
-	unset($group_handler,$auction_handler,$news_handler,$hotel_guide_rows,$hotel_today_special_rows);
+	unset($hotel_handler,$group_handler,$auction_handler,$news_handler,$hotel_guide_rows,$hotel_today_special_rows);
+	//var_dump($block);
 	return $block;
 }
 

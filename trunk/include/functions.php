@@ -261,9 +261,11 @@ function deldir($dir) {
  * */
 if(!function_exists('getModuleArray'))
 {
-function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $selected = null)
+function getModuleArray($module_key , $keyName = null , $is_get_arr = false , $selected = null,$ModuleConfig = null)
 {
 	global $xoopsModuleConfig;
+	if(empty($xoopsModuleConfig)) $xoopsModuleConfig = & $ModuleConfig;
+	//var_dump($xoopsModuleConfig);
 	$keyName = is_null($keyName) ? $module_key : $keyName;
 	if(isset($xoopsModuleConfig[$module_key]) && !empty($xoopsModuleConfig[$module_key]))
 	{
