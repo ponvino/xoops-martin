@@ -56,7 +56,7 @@ $select_title = '您选择了 ' . $hotel_data['hotel_name'];
 include XOOPS_ROOT_PATH.'/header.php';
 include XOOPS_ROOT_PATH.'/modules/martin/HotelSearchLeft.php';
 
-$xoopsOption['xoops_pagetitle'] =  $select_title . ' - 酒店预定 - '.$xoopsConfig['sitename'];
+$xoopsOption['xoops_pagetitle'] =  $select_title . ' - 酒店预定';// - '.$xoopsConfig['sitename'];
 $xoopsTpl -> assign('check_date_count',$check_date_count);
 $xoopsTpl -> assign("xoops_pagetitle", $xoopsOption["xoops_pagetitle"]);
 $xoopsTpl -> assign('hotel_static_prefix',$xoopsModuleConfig['hotel_static_prefix']);

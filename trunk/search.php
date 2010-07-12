@@ -62,7 +62,7 @@ $xoopsOption["template_main"] = "martin_hotel_search.html";
 include XOOPS_ROOT_PATH.'/header.php';
 include XOOPS_ROOT_PATH.'/modules/martin/HotelSearchLeft.php';
 
-$xoopsOption['xoops_pagetitle'] =  $select_title . ' - 酒店搜索预定 - '.$xoopsConfig['sitename'];
+$xoopsOption['xoops_pagetitle'] =  $select_title . ' - 酒店搜索预定';// - '.$xoopsConfig['sitename'];
 
 $xoopsTpl -> assign('check_in_date_count',intval(($check_date[1]-$check_date[0])/(3600*24)));
 $xoopsTpl -> assign("xoops_pagetitle", $xoopsOption["xoops_pagetitle"]);

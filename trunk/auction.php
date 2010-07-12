@@ -59,7 +59,7 @@ $xoopsOption["template_main"] = "martin_auction.html";
 include XOOPS_ROOT_PATH.'/header.php';
 include XOOPS_ROOT_PATH.'/modules/martin/HotelSearchLeft.php';
 
-$xoopsOption['xoops_pagetitle'] =   $auction_obj->auction_name(). ' - 竞拍 - '.$xoopsConfig['sitename'];
+$xoopsOption['xoops_pagetitle'] =   $auction_obj->auction_name(). ' - 竞拍';// - '.$xoopsConfig['sitename'];
 
 $xoopsTpl -> assign("xoops_pagetitle", $xoopsOption["xoops_pagetitle"]);
 $xoopsTpl -> assign("module_url", XOOPS_URL . '/modules/martin/');
