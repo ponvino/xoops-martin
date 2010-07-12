@@ -36,6 +36,10 @@ $modversion["hasAdmin"] = 1;
 $modversion["adminindex"] = "admin/index.php";
 $modversion["adminmenu"] = "admin/menu.php";
 
+
+//是否有前台
+$modversion["hasMain"] = 1;
+
 //blocks
 $modversion["blocks"] = array();
 $i = 0;
