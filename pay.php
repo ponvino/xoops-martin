@@ -49,7 +49,7 @@ $xoopsOption["template_main"] = "martin_hotel_pay.html";
 include XOOPS_ROOT_PATH.'/header.php';
 include XOOPS_ROOT_PATH.'/modules/martin/HotelSearchLeft.php';
 
-$xoopsOption['xoops_pagetitle'] =  '支付方式选择 - '.$xoopsConfig['sitename'];
+$xoopsOption['xoops_pagetitle'] =  '支付方式选择';// - '.$xoopsConfig['sitename'];
 $xoopsTpl -> assign("xoops_pagetitle", $xoopsOption["xoops_pagetitle"]);
 $xoopsTpl -> assign('hotel_static_prefix',$xoopsModuleConfig['hotel_static_prefix']);
 $xoopsTpl -> assign('module_url',MODULE_URL);
