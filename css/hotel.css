@@ -435,6 +435,7 @@ overflow:hidden;
 font-size:18px;
 float:left;
 line-height:50px;
+_margin-right:15px;
 padding-bottom:10px;
 font-weight:bold;
 width:350px;
@@ -919,7 +920,6 @@ padding:15px 15px 10px 15px;
 overflow:hidden;
 }
 .specials .detailed p{
-height:20px;
 line-height:20px;
 }
 .specials .detailed li{
@@ -931,6 +931,10 @@ height:20px;
 .specials .detailed a{
 color:#3F7E15;
 text-decoration:none;
+}
+.specials .detailed img{
+float:left;
+margin-right:5px;
 }
 .specials .detailed a:hover{
 color:#3F7E15;
